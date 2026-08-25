@@ -19,6 +19,8 @@ var current_weapon: WeaponResource = null
 var current_weapon_instance: Node3D = null
 var fire_cooldown: float = 0.0
 var firing: bool = false
+var animation_player: AnimationPlayer
+
 
 func _ready() -> void:
 	equip_weapon(SLOT_1)
@@ -57,6 +59,7 @@ func equip_weapon(slot_key: String):
 	current_weapon.weapon_slot = slot_key
 	if current_weapon.weapon_type != WeaponEnums.WeaponType.EMPTY:
 		spawn_weapon_model(current_weapon.weapon_model_in_hands)
+		
 
 func swap_weapon(slot_key: String):
 	if slot_key == current_slot_key:
@@ -67,11 +70,15 @@ func try_fire_weapon():
 	if not current_weapon or current_weapon.weapon_type == WeaponEnums.WeaponType.EMPTY:
 		return
 	if current_weapon.current_ammo > 0:
+		if animation_player != null:
+			animation_player.stop()
+			animation_player.play("shoot")
 		current_weapon.current_ammo -= 1
 		fire_cooldown = current_weapon.fire_rate
 		if current_weapon.full_auto and not firing:
 			firing = true
-		# Add actual firing logic here (projectile, sound, etc.)
+		if current_weapon.reserve_ammo == 0:
+			reload_weapon()
 	elif current_weapon.reserve_ammo > 0:
 		reload_weapon()
 	else:
@@ -140,6 +147,10 @@ func spawn_weapon_model(model_path: String, in_world: bool = false):
 		instance.position = Vector3(current_weapon.weapon_position_x, current_weapon.weapon_position_y, current_weapon.weapon_position_z)
 		instance.rotation = Vector3(current_weapon.weapon_rotation_x, current_weapon.weapon_rotation_y, current_weapon.weapon_rotation_z)
 		current_weapon_instance = instance
+	
+	var anim_player = instance.find_child("AnimationPlayer")
+	if anim_player != null:
+		animation_player = anim_player
 	print("Weapon model spawned: ", model_path)
 
 func update_ammo_ui():

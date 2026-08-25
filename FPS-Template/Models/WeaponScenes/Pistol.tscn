@@ -1,5 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://b70qpeoo22ir"]
+[gd_scene format=3 uid="uid://b70qpeoo22ir"]
 
 [ext_resource type="PackedScene" uid="uid://yxlq3jjgmx3x" path="res://Models/WeaponModels/Pistol/stylized_pistol.glb" id="1_bb5vq"]
 
-[node name="WeaponModel" instance=ExtResource("1_bb5vq")]
+[sub_resource type="Animation" id="Animation_bb5vq"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode/Object001/Object_4")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7hlsu"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode/Object001/Object_4")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, -0.258819, 0, 0, 0.965926, 0.2, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode/Object001/Object_4")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.06666667, 1, 0, 10, 0, 0.2, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vmdu"]
+_data = {
+&"RESET": SubResource("Animation_bb5vq"),
+&"shoot": SubResource("Animation_7hlsu")
+}
+
+[node name="WeaponModel" unique_id=124901632 instance=ExtResource("1_bb5vq")]
+
+[node name="Object_4" parent="Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode/Object001" parent_id_path=PackedInt32Array(660413785) index="0" unique_id=1981617859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=544525384]
+libraries/ = SubResource("AnimationLibrary_7vmdu")
