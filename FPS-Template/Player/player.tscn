@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cdbu1kklfiir6" path="res://Player/Scripts/Camera/camera_manager.gd" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://d2kbyn1k775i8" path="res://Weapon/weapon_manager.tscn" id="15_pisgm"]
 [ext_resource type="Script" uid="uid://cjcj4w6udcjlc" path="res://Player/Scripts/Config/config.gd" id="16_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://i6sbf46q30ja" path="res://Scenes/UI/player_ui.tscn" id="18_b1ygp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
@@ -255,6 +256,10 @@ popup/item_0/text = "Dash"
 popup/item_0/id = 0
 popup/item_1/text = "Glide"
 popup/item_1/id = 1
+
+[node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager") instance=ExtResource("18_b1ygp")]
+offset_right = -0.00012207031
+weapon_manager = NodePath("../Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/WeaponManager")
 
 [connection signal="toggled" from="Config/Dash" to="Config" method="_on_dash_toggled"]
 [connection signal="toggled" from="Config/Crouch" to="Config" method="_on_crouch_toggled"]

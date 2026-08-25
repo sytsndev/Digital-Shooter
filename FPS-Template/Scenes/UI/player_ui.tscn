@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://i6sbf46q30ja"]
+
+[ext_resource type="Script" uid="uid://bpt503xjwjns1" path="res://Scripts/UI/player_ui.gd" id="1_xnwvs"]
+
+[node name="PlayerUI" type="Control" unique_id=986018775]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_xnwvs")
+
+[node name="AmmoLabel" type="RichTextLabel" parent="." unique_id=1636894052]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_top = -138.0
+offset_right = -61.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 64
+text = "X / X"
