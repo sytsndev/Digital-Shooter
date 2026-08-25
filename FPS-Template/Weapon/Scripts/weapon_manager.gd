@@ -151,6 +151,8 @@ func spawn_weapon_model(model_path: String, in_world: bool = false):
 	var anim_player = instance.find_child("AnimationPlayer")
 	if anim_player != null:
 		animation_player = anim_player
+	else:
+		animation_player = null
 	print("Weapon model spawned: ", model_path)
 
 func update_ammo_ui():
