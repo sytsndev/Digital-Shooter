@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://ddpfdhkgoo7yd"]
+
+[ext_resource type="Script" uid="uid://c5m2rynofwnew" path="res://Resources/Scripts/weapon_res.gd" id="1_mwb5d"]
+
+[resource]
+script = ExtResource("1_mwb5d")
+weapon_id = 0
+weapon_name = "Empty"
+max_ammo = 0
+reserve_ammo = 0
+current_ammo = 0
+full_auto = false
+fire_rate = 0.0
+weapon_type = 0
+weapon_model = " = "
+weapon_position_x = 0.0
+weapon_position_y = 0.0
+weapon_position_z = 0.0
+weapon_rotation_x = 0.0
+weapon_rotation_y = 0.0
+weapon_rotation_z = 0.0
+metadata/_custom_type_script = "uid://c5m2rynofwnew"

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwu80lq4vncwd"]
+
+[ext_resource type="PackedScene" uid="uid://bnqyv0l0gwae5" path="res://Models/WeaponModels/AK/AK.glb" id="1_o6pti"]
+
+[node name="WeaponModel" instance=ExtResource("1_o6pti")]

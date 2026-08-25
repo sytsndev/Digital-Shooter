@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://g7yukrfnef2s"]
+
+[ext_resource type="Script" uid="uid://c5m2rynofwnew" path="res://Resources/Scripts/weapon_res.gd" id="1_q8h3m"]
+
+[resource]
+script = ExtResource("1_q8h3m")
+weapon_id = 2
+weapon_name = "weapon_2"
+max_ammo = 30
+reserve_ammo = 90
+current_ammo = 30
+full_auto = true
+fire_rate = 0.1
+weapon_type = 2
+weapon_model_in_hands = "res://Models/WeaponScenes/AK.tscn"
+weapon_model_in_world = "res://Models/WeaponScenes/AK_world.tscn"
+weapon_position_x = 0.4
+weapon_position_y = -0.4
+weapon_position_z = -0.8
+weapon_rotation_x = 0.0
+weapon_rotation_y = 3.0
+weapon_rotation_z = 0.0
+metadata/_custom_type_script = "uid://c5m2rynofwnew"
