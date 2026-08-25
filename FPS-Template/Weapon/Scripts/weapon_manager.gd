@@ -1,0 +1,2 @@
+class_name WeaponManager
+extends Node3D

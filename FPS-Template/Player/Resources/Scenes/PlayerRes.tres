@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PlayerRes" format=3 uid="uid://4g0po8ces2vo"]
+
+[ext_resource type="Script" uid="uid://b2014t34yvg7" path="res://Player/Resources/Scripts/player_res.gd" id="1_2ryly"]
+
+[resource]
+script = ExtResource("1_2ryly")
+camera_pos = Vector3(0, 1.65, 0)
+crouch = true
+sprint = true
+wall_run = true
+slide = true
+dash = true
+double_jump = true
+grapple = true
+mouse_sens = 0.8
+wall_run_reset_jump = true
+c_lean = true
+c_fov_change = true
+movement_type = 1
+m_ground_friction = 30.0
+m_air_accel = 20.0
+slide_delay = 2.0
+max_double_jump_count = 2.0
+grapple_dist = Vector3(0, 0, -20)
+metadata/_custom_type_script = "uid://b2014t34yvg7"
