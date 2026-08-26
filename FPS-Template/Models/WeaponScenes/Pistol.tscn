@@ -11,6 +11,31 @@ tracks/0/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/R
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_7vmdu"]
+resource_name = "reload"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.26666668, 1, 0, -0.5, 0, 0.5, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/af739d94bb554d4795aa90f3452ae077_fbx/RootNode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.16666667, 1, 0.5, 0, 0, 0.866025, 0.5, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_7hlsu"]
 resource_name = "shoot"
@@ -33,6 +58,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.06666667, 1, 0, 10, 0, 0.2, 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vmdu"]
 _data = {
 &"RESET": SubResource("Animation_bb5vq"),
+&"reload": SubResource("Animation_7vmdu"),
 &"shoot": SubResource("Animation_7hlsu")
 }
 

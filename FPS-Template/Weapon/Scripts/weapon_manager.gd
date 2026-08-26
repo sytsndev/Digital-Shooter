@@ -87,10 +87,14 @@ func try_fire_weapon():
 func reload_weapon():
 	if not current_weapon:
 		return
+	if current_weapon.max_ammo == current_weapon.current_ammo:
+		return
 	var needed_ammo = current_weapon.max_ammo - current_weapon.current_ammo
 	var ammo_to_load = min(needed_ammo, current_weapon.reserve_ammo)
 	current_weapon.current_ammo += ammo_to_load
 	current_weapon.reserve_ammo -= ammo_to_load
+	if animation_player != null:
+		animation_player.play("reload")
 	print("Reloaded: %d, Reserve: %d" % [current_weapon.current_ammo, current_weapon.reserve_ammo])
 
 func drop_current_weapon():

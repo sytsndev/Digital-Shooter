@@ -1,5 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwu80lq4vncwd"]
+[gd_scene format=3 uid="uid://dwu80lq4vncwd"]
 
 [ext_resource type="PackedScene" uid="uid://bnqyv0l0gwae5" path="res://Models/WeaponModels/AK/AK.glb" id="1_o6pti"]
 
-[node name="WeaponModel" instance=ExtResource("1_o6pti")]
+[sub_resource type="Animation" id="Animation_o6pti"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/31d3248eeac842058aed130228d70a7e_fbx/RootNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/31d3248eeac842058aed130228d70a7e_fbx/RootNode/MS_AK47_Magazine")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -1.2489576, 17.886839, -34.12231)
+
+[sub_resource type="Animation" id="Animation_vp3st"]
+resource_name = "reload"
+length = 0.76666665
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/31d3248eeac842058aed130228d70a7e_fbx/RootNode/MS_AK47_Magazine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.2489576, 17.886839, -34.12231, 0.23333333, 1, -1.249, -5, -45, 0.46666667, 1, -1.249, -5, -45, 0.76666665, 1, -1.2489576, 17.886839, -34.12231)
+
+[sub_resource type="Animation" id="Animation_dcj7u"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/31d3248eeac842058aed130228d70a7e_fbx/RootNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, -0.008727, 0, 0, 0.999962, 0.2, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/31d3248eeac842058aed130228d70a7e_fbx/RootNode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.06666667, 1, 0, 0, -5, 0.2, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vp3st"]
+_data = {
+&"RESET": SubResource("Animation_o6pti"),
+&"reload": SubResource("Animation_vp3st"),
+&"shoot": SubResource("Animation_dcj7u")
+}
+
+[node name="WeaponModel" unique_id=125250664 instance=ExtResource("1_o6pti")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1295804424]
+libraries/ = SubResource("AnimationLibrary_vp3st")
