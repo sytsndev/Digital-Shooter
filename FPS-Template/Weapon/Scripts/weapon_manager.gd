@@ -77,7 +77,7 @@ func try_fire_weapon():
 		fire_cooldown = current_weapon.fire_rate
 		if current_weapon.full_auto and not firing:
 			firing = true
-		if current_weapon.reserve_ammo == 0:
+		if current_weapon.current_ammo == 0:
 			reload_weapon()
 	elif current_weapon.reserve_ammo > 0:
 		reload_weapon()
