@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bhvh10h14wie8" path="res://icon.svg" id="1_x56lj"]
 [ext_resource type="PackedScene" uid="uid://bvs5pa253asic" path="res://Player/player.tscn" id="2_2hbmw"]
+[ext_resource type="PackedScene" uid="uid://c5u1vo3qobfb4" path="res://Scenes/Enemy.tscn" id="3_abuvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hbmw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,3 +84,27 @@ size = Vector3(1.1560059, 9.4921875, 28.806274)
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=94907302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.766, 1.9, -0.299)
 size = Vector3(1, 1, 4.7753906)
+
+[node name="Enemy" parent="." unique_id=1117200668 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.041552, 1.1335373, 0)
+
+[node name="Enemy2" parent="." unique_id=1349856458 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.897383, 1.1335373, 0)
+
+[node name="Enemy3" parent="." unique_id=227011376 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.897383, 1.1335373, 1.4218893)
+
+[node name="Enemy4" parent="." unique_id=667586370 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935597, 1.1335373, 1.4218893)
+
+[node name="Enemy5" parent="." unique_id=228355371 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935597, 1.1335373, -0.06306267)
+
+[node name="Enemy6" parent="." unique_id=1843066043 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935597, 1.1335373, -1.1634951)
+
+[node name="Enemy7" parent="." unique_id=1027568792 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.118886, 1.1335373, -1.1634951)
+
+[node name="Enemy8" parent="." unique_id=1053936195 instance=ExtResource("3_abuvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.004438, 1.1335373, -1.1634951)

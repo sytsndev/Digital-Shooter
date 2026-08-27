@@ -74,6 +74,8 @@ enum MovementType {
 @export_category("Jump")
 @export var jump_gravity: float = -20.0
 @export var jump_impulse: float = 11.0
+@export var gp_jump_impulse: float = 20.0
+
 
 @export_category("Dash")
 @export var dash_impulse: float = 50.0

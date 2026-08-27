@@ -140,6 +140,7 @@ func get_speed():
 	else:
 		return player_res.speed
 
+
 func wall_run_timer(delta: float):
 	if is_on_floor():
 		wr_reset_timer = 0.0
@@ -154,3 +155,11 @@ func slide_timer(delta: float):
 		slide_reset_timer -= delta
 		if slide_reset_timer <= 0.0:
 			slide_reset_timer = 0.0
+
+
+func reset_air_movement(d_jump: bool = true, dash: bool = true):
+	if d_jump:
+		print(d_jump_count)
+		d_jump_count = 0
+	if dash:
+		dash_count = 0

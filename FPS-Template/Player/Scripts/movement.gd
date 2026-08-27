@@ -41,8 +41,8 @@ func fall_move(direction: Vector3, delta: float):
 	if player.player_res.c_lean:
 		player.camera_lean.update_lean(delta, acceleration, Vector3.UP)
 
-func jump_move():
-	player.velocity.y = player.player_res.jump_impulse
+func jump_move(impulse: float):
+	player.velocity.y = impulse
 	player.move_and_slide()
 	
 

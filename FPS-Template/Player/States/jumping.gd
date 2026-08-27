@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.movement.jump_move()
+	if previous_state_path == "GroundPound":
+		player.movement.jump_move(player.player_res.gp_jump_impulse)
+	else:
+		player.movement.jump_move(player.player_res.jump_impulse)
 	#player.animation_player.play("jump")
 
 func physics_update(delta: float) -> void:
