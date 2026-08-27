@@ -25,6 +25,7 @@ var weapon_slot: String
 @export var full_auto: bool
 @export var fire_rate: float
 @export var weapon_type: WeaponType
+@export var reload_delay: float
 
 @export_category("Weapon Model")
 @export var weapon_model_in_hands: String

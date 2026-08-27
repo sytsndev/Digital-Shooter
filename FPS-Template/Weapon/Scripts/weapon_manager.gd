@@ -20,6 +20,8 @@ var current_weapon_instance: Node3D = null
 var fire_cooldown: float = 0.0
 var firing: bool = false
 var animation_player: AnimationPlayer
+var reloading: bool = false
+var reload_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -29,6 +31,13 @@ func _process(delta: float) -> void:
 	if fire_cooldown > 0:
 		fire_cooldown -= delta
 
+	if reloading:
+		if reload_timer > 0.0:
+			reload_timer -= delta
+			if reload_timer <= 0.0:
+				finish_reload()
+				reload_timer = 0.0
+				reloading = false
 	update_ammo_ui()
 
 	handle_input()
@@ -89,13 +98,20 @@ func reload_weapon():
 		return
 	if current_weapon.max_ammo == current_weapon.current_ammo:
 		return
+	if !reloading:
+		reload_timer = current_weapon.reload_delay
+		reloading = true
+		if animation_player != null:
+			animation_player.play("reload")
+
+
+func finish_reload():
 	var needed_ammo = current_weapon.max_ammo - current_weapon.current_ammo
 	var ammo_to_load = min(needed_ammo, current_weapon.reserve_ammo)
 	current_weapon.current_ammo += ammo_to_load
 	current_weapon.reserve_ammo -= ammo_to_load
-	if animation_player != null:
-		animation_player.play("reload")
 	print("Reloaded: %d, Reserve: %d" % [current_weapon.current_ammo, current_weapon.reserve_ammo])
+
 
 func drop_current_weapon():
 	if not current_weapon or current_weapon.weapon_type == WeaponEnums.WeaponType.EMPTY:
