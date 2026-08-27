@@ -30,6 +30,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if fire_cooldown > 0:
 		fire_cooldown -= delta
+		if fire_cooldown <= 0.0:
+			fire_cooldown = 0.0
 
 	if reloading:
 		if reload_timer > 0.0:
@@ -47,14 +49,6 @@ func handle_input():
 		swap_weapon(SLOT_1)
 	elif Input.is_action_just_pressed("weapon_slot_2"):
 		swap_weapon(SLOT_2)
-
-	if Input.is_action_just_pressed("action_1") or (firing and fire_cooldown <= 0):
-		try_fire_weapon()
-	if Input.is_action_just_released("action_1"):
-		firing = false
-
-	if Input.is_action_just_pressed("reload"):
-		reload_weapon()
 
 	if Input.is_action_just_pressed("drop"):
 		drop_current_weapon()
@@ -76,8 +70,6 @@ func swap_weapon(slot_key: String):
 	equip_weapon(slot_key)
 
 func try_fire_weapon():
-	if not current_weapon or current_weapon.weapon_type == WeaponEnums.WeaponType.EMPTY:
-		return
 	if current_weapon.current_ammo > 0:
 		if animation_player != null:
 			animation_player.stop()
@@ -86,17 +78,9 @@ func try_fire_weapon():
 		fire_cooldown = current_weapon.fire_rate
 		if current_weapon.full_auto and not firing:
 			firing = true
-		if current_weapon.current_ammo == 0:
-			reload_weapon()
-	elif current_weapon.reserve_ammo > 0:
-		reload_weapon()
-	else:
-		print("Empty")
 
 func reload_weapon():
 	if not current_weapon:
-		return
-	if current_weapon.max_ammo == current_weapon.current_ammo:
 		return
 	if !reloading:
 		reload_timer = current_weapon.reload_delay
@@ -184,3 +168,10 @@ func update_ammo_ui():
 		current_weapon.max_ammo,
 		current_weapon.reserve_ammo
 	])
+
+
+
+#region State Checks
+
+func reload_state():
+	return Input.is_action_just_pressed("reload") and current_weapon.max_ammo != current_weapon.current_ammo and current_weapon.reserve_ammo != 0

@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://c7b2oh45am1mm" path="res://Weapon/Scripts/weapon_manager.gd" id="1_7cv17"]
 [ext_resource type="Script" uid="uid://qxxp28vujgu" path="res://StateMachine/state_machine.gd" id="2_hgj6i"]
 [ext_resource type="Script" uid="uid://dns5esylbxidm" path="res://Weapon/States/idle.gd" id="3_xwvll"]
-[ext_resource type="Script" uid="uid://b812rjk3xpi4v" path="res://Weapon/States/shooting.gd" id="4_xwvll"]
-[ext_resource type="Script" uid="uid://dmol5gtomuc7q" path="res://Weapon/States/reloading.gd" id="5_ao85i"]
 
 [node name="WeaponManager" type="Node3D" unique_id=688794189]
 script = ExtResource("1_7cv17")
@@ -19,9 +17,3 @@ script = ExtResource("2_hgj6i")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1579733159]
 script = ExtResource("3_xwvll")
-
-[node name="Shooting" type="Node" parent="StateMachine" unique_id=1150714526]
-script = ExtResource("4_xwvll")
-
-[node name="Reloading" type="Node" parent="StateMachine" unique_id=788484651]
-script = ExtResource("5_ao85i")
