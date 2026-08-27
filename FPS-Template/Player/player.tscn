@@ -27,7 +27,7 @@ points = PackedVector3Array(-0.5, -0.5, 0, -0.49765074, -0.5, -0.049040705, -0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtle1"]
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast")]
+[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray")]
 script = ExtResource("1_fhl08")
 neck = NodePath("Neck")
 camera = NodePath("Neck/CameraSpring/CameraLean/CameraContainer")
@@ -41,9 +41,11 @@ camera_manager = NodePath("Neck/CameraSpring/CameraLean/CameraContainer/Camera3D
 left_wall_run_rays = [NodePath("Neck/WallRun/LeftLow"), NodePath("Neck/WallRun/LeftHigh")]
 right_wall_run_rays = [NodePath("Neck/WallRun/RightLow"), NodePath("Neck/WallRun/RightHigh")]
 grapple_cast = NodePath("Neck/CameraSpring/CameraLean/CameraContainer/GrappleCast")
+interact_ray = NodePath("Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/InteractRay")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1519460414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_s1fef")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=624400571]
@@ -93,6 +95,9 @@ fov = 90.0
 script = ExtResource("12_p5o4e")
 
 [node name="WeaponManager" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=688794189 instance=ExtResource("15_pisgm")]
+
+[node name="InteractRay" type="RayCast3D" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=1556448973]
+target_position = Vector3(0, 0, -4)
 
 [node name="GrappleCast" type="RayCast3D" parent="Neck/CameraSpring/CameraLean/CameraContainer" unique_id=997315077]
 

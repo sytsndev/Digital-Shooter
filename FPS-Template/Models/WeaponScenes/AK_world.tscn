@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dih5sqwpjp1wa"]
+[gd_scene format=3 uid="uid://dih5sqwpjp1wa"]
 
-[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Resources/Scripts/interact_info.gd" id="1_g5evn"]
+[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/interact_info.gd" id="1_g5evn"]
 [ext_resource type="PackedScene" uid="uid://bnqyv0l0gwae5" path="res://Models/WeaponModels/AK/AK.glb" id="1_mvrx6"]
-[ext_resource type="PackedScene" uid="uid://bctihgqtn6jty" path="res://Scenes/interact.tscn" id="3_i2r7b"]
+[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/interact.tscn" id="3_i2r7b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvrx6"]
 size = Vector3(0.0575542, 0.142121, 0.889698)
@@ -18,28 +18,28 @@ height = 0.176742
 radius = 0.0451298
 height = 0.248602
 
-[node name="AK" type="RigidBody3D"]
+[node name="AK" type="RigidBody3D" unique_id=1081331527]
 script = ExtResource("1_g5evn")
 item_path = "res://Resources/Weapons/weapon_2.tres"
 equipable = true
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_mvrx6")]
+[node name="Sketchfab_Scene" parent="." unique_id=668836593 instance=ExtResource("1_mvrx6")]
 
-[node name="BodyCollision" type="CollisionShape3D" parent="."]
+[node name="BodyCollision" type="CollisionShape3D" parent="." unique_id=1608453593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128222, 0.254064, -0.159189)
 shape = SubResource("BoxShape3D_mvrx6")
 
-[node name="StockCollision" type="CollisionShape3D" parent="."]
+[node name="StockCollision" type="CollisionShape3D" parent="." unique_id=857254190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00948114, 0.176765, -0.762485)
 shape = SubResource("BoxShape3D_20q7h")
 
-[node name="GripCollision" type="CollisionShape3D" parent="."]
+[node name="GripCollision" type="CollisionShape3D" parent="." unique_id=2137261138]
 transform = Transform3D(1, 0, 0, 0, 0.946102, -0.323868, 0, 0.323868, 0.946102, -0.0108934, 0.136942, -0.547999)
 shape = SubResource("CapsuleShape3D_pqoku")
 
-[node name="MagCollision" type="CollisionShape3D" parent="."]
+[node name="MagCollision" type="CollisionShape3D" parent="." unique_id=1288177812]
 transform = Transform3D(1, 0, 0, 0, 0.895463, 0.445135, 0, -0.445135, 0.895463, -0.00686833, 0.0966529, -0.299798)
 shape = SubResource("CapsuleShape3D_fii5j")
 debug_fill = false
 
-[node name="Interact" parent="." instance=ExtResource("3_i2r7b")]
+[node name="Interact" parent="." unique_id=128422130 instance=ExtResource("3_i2r7b")]

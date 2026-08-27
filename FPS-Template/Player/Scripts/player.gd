@@ -17,6 +17,7 @@ class_name Player extends CharacterBody3D
 @export var left_wall_run_rays: Array[RayCast3D]
 @export var right_wall_run_rays: Array[RayCast3D]
 @export var grapple_cast: RayCast3D
+@export var interact_ray: RayCast3D
 
 @onready var wall_run_container: Node3D = $Neck/WallRun
 
@@ -38,6 +39,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	wall_run_timer(delta)
 	slide_timer(delta)
+	if interact_ray.is_colliding():
+		var collider = interact_ray.get_collider()
+		if collider is RigidBody3D:
+			var interact = collider.get_node("Interact")
+			print(interact)
+			if interact != null and Input.is_action_just_pressed("interact"):
+				interact.pick_up()
 
 #region Setup
 
