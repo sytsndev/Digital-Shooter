@@ -23,6 +23,7 @@ var animation_player: AnimationPlayer
 var reloading: bool = false
 var reload_timer: float = 0.0
 
+var reload_anim_speed: float
 
 func _ready() -> void:
 	equip_weapon(SLOT_1)
@@ -86,7 +87,7 @@ func reload_weapon():
 		reload_timer = current_weapon.reload_delay
 		reloading = true
 		if animation_player != null:
-			animation_player.play("reload")
+			animation_player.play("reload", -1, reload_anim_speed)
 
 
 func finish_reload():
@@ -155,6 +156,7 @@ func spawn_weapon_model(model_path: String, in_world: bool = false):
 	var anim_player = instance.find_child("AnimationPlayer")
 	if anim_player != null:
 		animation_player = anim_player
+		setup_animation_times()
 	else:
 		animation_player = null
 	print("Weapon model spawned: ", model_path)
@@ -169,6 +171,9 @@ func update_ammo_ui():
 		current_weapon.reserve_ammo
 	])
 
+func setup_animation_times():
+	var reload_anim = animation_player.get_animation("reload")
+	reload_anim_speed = reload_anim.length / current_weapon.reload_delay
 
 
 #region State Checks

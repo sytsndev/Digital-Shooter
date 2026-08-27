@@ -14,5 +14,7 @@ func _ready() -> void:
 
 
 func handle_input(_event: InputEvent) -> void:
+	if Input.is_action_pressed("shoot") and w.current_weapon.full_auto:
+		w.firing = true
 	if Input.is_action_just_released("shoot"):
 		w.firing = false
