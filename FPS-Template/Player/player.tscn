@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cijh8hdlcrmye" path="res://Player/Scripts/Camera/camera_lean.gd" id="10_x3vf3"]
 [ext_resource type="Script" uid="uid://dswanda68gj6v" path="res://Player/Scripts/movement.gd" id="11_apopc"]
 [ext_resource type="Script" uid="uid://dvddh4ejtaq1r" path="res://Player/States/wall_run.gd" id="11_dkpta"]
+[ext_resource type="Script" uid="uid://bjnbohdcogb88" path="res://Player/States/ground_pound.gd" id="12_o28un"]
 [ext_resource type="Script" uid="uid://cdbu1kklfiir6" path="res://Player/Scripts/Camera/camera_manager.gd" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://d2kbyn1k775i8" path="res://Weapon/weapon_manager.tscn" id="15_pisgm"]
 [ext_resource type="Script" uid="uid://cjcj4w6udcjlc" path="res://Player/Scripts/Config/config.gd" id="16_lfmf2"]
@@ -79,6 +80,9 @@ script = ExtResource("10_gu6f8")
 
 [node name="WallRun" type="Node" parent="StateMachine" unique_id=168475959]
 script = ExtResource("11_dkpta")
+
+[node name="GroundPound" type="Node" parent="StateMachine" unique_id=1383859472]
+script = ExtResource("12_o28un")
 
 [node name="Neck" type="Node3D" parent="." unique_id=825116909]
 

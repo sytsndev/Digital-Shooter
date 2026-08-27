@@ -12,7 +12,9 @@ func physics_update(delta: float) -> void:
 		player.movement.air_wish_dir_move(delta, input_dir)
 	elif player.player_res.movement_type == MovementType.MOMENTUM:
 		player.movement.momentum_move(delta, input_dir, player.player_res.m_speed)
-		
+	
+	if Input.is_action_just_pressed("crouch"):
+		finished.emit(GROUND_POUND)
 	if player.state_wall_run():
 		finished.emit(WALL_RUN)
 	if player.state_dash():

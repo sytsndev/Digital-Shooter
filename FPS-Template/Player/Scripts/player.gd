@@ -47,11 +47,14 @@ func _process(delta: float) -> void:
 			if interact != null and Input.is_action_just_pressed("interact"):
 				interact.pick_up()
 
+
 #region Setup
+
 
 func setup():
 	camera.position = player_res.camera_pos
 	grapple_cast.target_position = player_res.grapple_dist
+
 
 #endregion
 

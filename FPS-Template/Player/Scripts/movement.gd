@@ -387,3 +387,8 @@ func get_wish_dir(input_dir: Vector2) -> Vector3:
 		wish_dir = wish_dir.normalized()
 
 	return wish_dir
+
+
+func ground_pound():
+	player.velocity.y = -40.0
+	player.move_and_slide()
