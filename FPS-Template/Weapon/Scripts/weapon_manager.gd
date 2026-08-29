@@ -189,3 +189,7 @@ func swapping_state():
 	elif Input.is_action_just_pressed("weapon_slot_2"):
 		swap_slot = SLOT_2
 	return swap_slot != ""
+
+
+func shooting_state():
+	return (Input.is_action_just_pressed("action_1") or firing) and fire_cooldown <= 0.0
