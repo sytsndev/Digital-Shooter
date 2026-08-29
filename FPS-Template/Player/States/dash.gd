@@ -14,6 +14,8 @@ func physics_update(delta: float) -> void:
 		player.movement.start_dash(direction)
 	player.movement.dash_move(delta)
 	
+	if player.state_ground_pound():
+		finished.emit(GROUND_POUND)
 	if !player.movement.is_dashing:
 		finished.emit(FALLING)
 

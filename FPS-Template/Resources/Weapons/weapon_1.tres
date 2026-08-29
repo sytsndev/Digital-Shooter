@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_s3jy0")
+infite_ammo = true
 weapon_id = 1
 weapon_name = "weapon_1"
 max_ammo = 12

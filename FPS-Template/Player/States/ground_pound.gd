@@ -1,14 +1,12 @@
 extends PlayerState
 
-var fall_distance: float
-
+var start_pos: Vector3
 
 func enter(previous_state_path: String, data := {}) -> void:
-	fall_distance = player.position.y
+	start_pos = player.position
 
 
 func physics_update(delta: float) -> void:
-	
 	if player.player_res.movement_type == MovementType.FLOATY:
 		player.movement.ground_pound()
 	for i in player.get_slide_collision_count():
@@ -33,4 +31,5 @@ func physics_update(delta: float) -> void:
 
 
 func exit() -> void:
+	player.curr_gp_dist = start_pos.distance_to(player.position)
 	player.reset_air_movement()

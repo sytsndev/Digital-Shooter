@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cy554gsh5247q" path="res://Player/Scripts/player.gd" id="1_fhl08"]
 [ext_resource type="Script" uid="uid://qxxp28vujgu" path="res://StateMachine/state_machine.gd" id="1_k53q1"]
 [ext_resource type="Script" uid="uid://cxa1udd8bx2cy" path="res://Player/States/falling.gd" id="2_fhl08"]
+[ext_resource type="Resource" uid="uid://c2f5lmswd86tb" path="res://Resources/Scenes/Health/player_health_res.tres" id="2_n471f"]
 [ext_resource type="Resource" uid="uid://4g0po8ces2vo" path="res://Player/Resources/Scenes/PlayerRes.tres" id="2_vtle1"]
 [ext_resource type="Script" uid="uid://d8j3cnaa1equ" path="res://Player/States/idle.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://cjnvsygxiw5ii" path="res://Player/States/jumping.gd" id="4_od3ui"]
@@ -28,11 +29,12 @@ points = PackedVector3Array(-0.5, -0.5, 0, -0.49765074, -0.5, -0.049040705, -0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtle1"]
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray")]
+[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray", "auto_heal_timer")]
 script = ExtResource("1_fhl08")
+health_res = ExtResource("2_n471f")
+player_res = ExtResource("2_vtle1")
 neck = NodePath("Neck")
 camera = NodePath("Neck/CameraSpring/CameraLean/CameraContainer")
-player_res = ExtResource("2_vtle1")
 crouch_shape_cast = NodePath("CrouchShape")
 collision_shape = NodePath("CollisionShape3D2")
 player_mesh = NodePath("MeshInstance3D")
@@ -43,6 +45,7 @@ left_wall_run_rays = [NodePath("Neck/WallRun/LeftLow"), NodePath("Neck/WallRun/L
 right_wall_run_rays = [NodePath("Neck/WallRun/RightLow"), NodePath("Neck/WallRun/RightHigh")]
 grapple_cast = NodePath("Neck/CameraSpring/CameraLean/CameraContainer/GrappleCast")
 interact_ray = NodePath("Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/InteractRay")
+auto_heal_timer = NodePath("AutoHealTimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1519460414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -269,6 +272,8 @@ popup/item_1/id = 1
 [node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager") instance=ExtResource("18_b1ygp")]
 offset_right = -0.00012207031
 weapon_manager = NodePath("../Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/WeaponManager")
+
+[node name="AutoHealTimer" type="Timer" parent="." unique_id=1681767244]
 
 [connection signal="toggled" from="Config/Dash" to="Config" method="_on_dash_toggled"]
 [connection signal="toggled" from="Config/Crouch" to="Config" method="_on_crouch_toggled"]

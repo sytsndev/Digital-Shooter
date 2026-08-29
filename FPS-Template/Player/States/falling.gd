@@ -13,7 +13,7 @@ func physics_update(delta: float) -> void:
 	elif player.player_res.movement_type == MovementType.MOMENTUM:
 		player.movement.momentum_move(delta, input_dir, player.player_res.m_speed)
 	
-	if Input.is_action_just_pressed("crouch"):
+	if player.state_ground_pound():
 		finished.emit(GROUND_POUND)
 	if player.state_wall_run():
 		finished.emit(WALL_RUN)

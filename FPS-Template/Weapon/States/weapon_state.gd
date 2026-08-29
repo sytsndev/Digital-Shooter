@@ -4,6 +4,7 @@ const IDLE = "Idle"
 const SHOOTING = "Shooting"
 const RELOADING = "Reloading"
 const AIMING = "Aiming"
+const SWAPPING = "Swapping"
 
 var w: WeaponManager
 

@@ -25,21 +25,33 @@ func stop_move(delta: float):
 	if player.player_res.c_lean:
 		player.camera_lean.update_lean(delta, acceleration, Vector3.UP)
 
-func fall_move(direction: Vector3, delta: float):
-	var prev_velocity := player.velocity
-	if direction:
-		player.velocity.x = direction.x * player.player_res.speed
-		player.velocity.z = direction.z * player.player_res.speed 
 
+func fall_move(direction: Vector3, delta: float) -> void:
+	var prev_velocity := player.velocity
+
+	if direction:
+		# Instant 1-frame snap to full speed (max snappiness)
+		player.velocity.x = direction.x * player.player_res.speed
+		player.velocity.z = direction.z * player.player_res.speed
+	else:
+		# Smooth coasting down to 0
+		# Air friction rate: lower = glides longer, higher = stops sooner
+		var air_friction: float = 12.0 
+		player.velocity.x = move_toward(player.velocity.x, 0.0, air_friction * delta)
+		player.velocity.z = move_toward(player.velocity.z, 0.0, air_friction * delta)
+
+	# Vertical physics
 	if player.velocity.y > 0.0:
 		player.velocity.y += player.player_res.jump_gravity * delta
 	else:
 		player.velocity.y += player.player_res.gravity * delta
-	player.move_and_slide()
-	var acceleration := (player.velocity - prev_velocity) / delta
 
+	player.move_and_slide()
+
+	var acceleration := (player.velocity - prev_velocity) / delta
 	if player.player_res.c_lean:
 		player.camera_lean.update_lean(delta, acceleration, Vector3.UP)
+
 
 func jump_move(impulse: float):
 	player.velocity.y = impulse
@@ -390,5 +402,13 @@ func get_wish_dir(input_dir: Vector2) -> Vector3:
 
 
 func ground_pound():
-	player.velocity.y = -40.0
+	player.velocity.y = player.player_res.gp_impulse
 	player.move_and_slide()
+
+
+func calculate_rebound_impulse(fall_distance: float) -> float:
+	var target_height: float = fall_distance * player.player_res.gp_bounce_perc
+	print("Impulse", target_height)
+	var impulse: float = sqrt(2.0 * abs(player.player_res.jump_gravity) * target_height)
+	
+	return clamp(impulse, player.player_res.gp_min_bounce_impulse, player.player_res.gp_max_bounce_impulse)

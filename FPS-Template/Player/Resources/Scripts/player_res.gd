@@ -23,6 +23,9 @@ enum MovementType {
 @export var dash: bool
 @export var double_jump: bool
 @export var grapple: bool
+@export var ground_pound: bool
+@export var infinite_jump: bool = false
+@export var infinite_dash: bool = false
 
 @export_category("Player Settings")
 @export var mouse_sens: float
@@ -36,7 +39,7 @@ enum MovementType {
 
 @export_category("Wall Run")
 @export var wall_run_delay: float = 0.5
-@export var wall_run_exit_impulse: float = 8.0
+@export var wall_run_exit_impulse: float = 15.0
 
 @export_category("Running")
 @export var movement_type: MovementType
@@ -72,10 +75,8 @@ enum MovementType {
 @export var sprint_speed: float = 14.0
 
 @export_category("Jump")
-@export var jump_gravity: float = -20.0
+@export var jump_gravity: float = -20.0 # While velocity.y > 0.0
 @export var jump_impulse: float = 11.0
-@export var gp_jump_impulse: float = 20.0
-
 
 @export_category("Dash")
 @export var dash_impulse: float = 50.0
@@ -88,12 +89,17 @@ enum MovementType {
 @export var slide_delay: float = 5.0
 
 @export_category("General")
-@export var gravity: float = -40.0
+@export var gravity: float = -40.0 # While velocity.y < 0.0
 
 @export_category("Player Movement Variables")
 @export var max_double_jump_count: float = 1
 @export var max_dash_count: float = 2
 
+@export_category("Ground Pound")
+@export var gp_impulse: float = -40.0
+@export var gp_bounce_perc: float = 0.8
+@export var gp_min_bounce_impulse: float = 5.0
+@export var gp_max_bounce_impulse: float = 35.0
 
 @export_category("Grapple")
 @export var grapple_dist: Vector3

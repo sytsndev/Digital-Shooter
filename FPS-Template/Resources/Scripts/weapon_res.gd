@@ -10,6 +10,9 @@ enum WeaponType {
 }
 
 
+@export_category("Toggles")
+@export var infite_ammo: bool = false
+
 @export_category("Weapon Info")
 @export var weapon_id: int
 @export var weapon_name: String

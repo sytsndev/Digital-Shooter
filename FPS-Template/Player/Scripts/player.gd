@@ -1,13 +1,13 @@
 class_name Player extends CharacterBody3D
 
 
-
-
+@export_category("Reaources")
+@export var health_res: HealthRes
+@export var player_res: PlayerRes
 
 @export_category("Nodes")
 @export var neck: Node3D
 @export var camera: Node3D
-@export var player_res: PlayerRes
 @export var crouch_shape_cast: ShapeCast3D
 @export var collision_shape: CollisionShape3D
 @export var player_mesh: MeshInstance3D
@@ -18,8 +18,11 @@ class_name Player extends CharacterBody3D
 @export var right_wall_run_rays: Array[RayCast3D]
 @export var grapple_cast: RayCast3D
 @export var interact_ray: RayCast3D
+@export var auto_heal_timer: Timer
 
 @onready var wall_run_container: Node3D = $Neck/WallRun
+
+var health: Health
 
 var is_crouching: bool = false
 var exiting_crouching: bool = false
@@ -28,9 +31,10 @@ var d_jump_count: int = 0
 var dash_count: int = 0
 var wr_reset_timer: float = 0.0
 var slide_reset_timer: float = 0.0
+var curr_gp_dist: float = 0.0 # this is holding the value of the height of the players current ground pound
 
 var is_paused: bool = false
-
+var is_dead: bool = false
 
 func _ready() -> void:
 	setup()
@@ -54,6 +58,23 @@ func _process(delta: float) -> void:
 func setup():
 	camera.position = player_res.camera_pos
 	grapple_cast.target_position = player_res.grapple_dist
+	health_setup()
+	time_setup()
+
+
+func health_setup():
+	health = Health.new(health_res.max_health, health_res.min_health, health_res.heal_rate, health_res.heal_rate)
+	health.healthType = "Player"
+	#player_ui.set_health(health.curr_health, health.max_health)
+	health.damage_taken.connect(_on_damage_taken)
+	health.dead.connect(_on_death)
+
+
+func time_setup():
+	auto_heal_timer.timeout.connect(_on_auto_heal_timeout)
+	auto_heal_timer.wait_time = health_res.auto_heal_delay
+	auto_heal_timer.one_shot = health_res.is_one_shot
+	auto_heal_timer.autostart = health_res.is_auto_start
 
 
 #endregion
@@ -131,6 +152,30 @@ func state_grapple():
 		return false
 	return Input.is_action_just_pressed("grapple") and grapple_cast.is_colliding()
 
+func state_ground_pound():
+	if !player_res.ground_pound:
+		return false
+	return Input.is_action_just_pressed("crouch") and !is_on_floor()
+
+#endregion
+
+
+#region Health
+
+
+func _on_damage_taken():
+	auto_heal_timer.start()
+	
+
+func _on_auto_heal_timeout():
+	health._start_healing()
+	if health.curr_health >= health.max_health:
+		auto_heal_timer.stop()
+
+
+func _on_death():
+	is_dead = true
+
 #endregion
 
 
@@ -159,7 +204,6 @@ func slide_timer(delta: float):
 
 func reset_air_movement(d_jump: bool = true, dash: bool = true):
 	if d_jump:
-		print(d_jump_count)
 		d_jump_count = 0
 	if dash:
 		dash_count = 0

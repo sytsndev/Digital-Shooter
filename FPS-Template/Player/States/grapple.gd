@@ -40,8 +40,8 @@ func physics_update(delta: float) -> void:
 
 		player.move_and_slide()
 
-	if player.state_grapple():
-		finished.emit(GRAPPLE)
+	#if player.state_grapple():
+		#finished.emit(GRAPPLE)
 	elif Input.is_action_pressed("jump"):
 		finished.emit(FALLING)
 	elif player.state_sprint():

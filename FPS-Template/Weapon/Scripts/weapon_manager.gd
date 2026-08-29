@@ -15,6 +15,7 @@ const SLOT_2 := "slot_2"
 # --- UI and state
 @export var control: Control
 var current_slot_key: String = SLOT_1
+var swap_slot: String = ""
 var current_weapon: WeaponResource = null
 var current_weapon_instance: Node3D = null
 var fire_cooldown: float = 0.0
@@ -46,11 +47,6 @@ func _process(delta: float) -> void:
 	handle_input()
 
 func handle_input():
-	if Input.is_action_just_pressed("weapon_slot_1"):
-		swap_weapon(SLOT_1)
-	elif Input.is_action_just_pressed("weapon_slot_2"):
-		swap_weapon(SLOT_2)
-
 	if Input.is_action_just_pressed("drop"):
 		drop_current_weapon()
 
@@ -75,7 +71,8 @@ func try_fire_weapon():
 		if animation_player != null:
 			animation_player.stop()
 			animation_player.play("shoot")
-		current_weapon.current_ammo -= 1
+		if !current_weapon.infite_ammo:
+			current_weapon.current_ammo -= 1
 		fire_cooldown = current_weapon.fire_rate
 		if current_weapon.full_auto and not firing:
 			firing = true
@@ -161,6 +158,7 @@ func spawn_weapon_model(model_path: String, in_world: bool = false):
 		animation_player = null
 	print("Weapon model spawned: ", model_path)
 
+
 func update_ammo_ui():
 	if not control or not current_weapon:
 		return
@@ -171,6 +169,7 @@ func update_ammo_ui():
 		current_weapon.reserve_ammo
 	])
 
+
 func setup_animation_times():
 	var reload_anim = animation_player.get_animation("reload")
 	reload_anim_speed = reload_anim.length / current_weapon.reload_delay
@@ -178,5 +177,15 @@ func setup_animation_times():
 
 #region State Checks
 
+
 func reload_state():
 	return Input.is_action_just_pressed("reload") and current_weapon.max_ammo != current_weapon.current_ammo and current_weapon.reserve_ammo != 0
+
+
+func swapping_state():
+	swap_slot = ""
+	if Input.is_action_just_pressed("weapon_slot_1"):
+		swap_slot = SLOT_1
+	elif Input.is_action_just_pressed("weapon_slot_2"):
+		swap_slot = SLOT_2
+	return swap_slot != ""
