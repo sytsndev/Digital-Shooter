@@ -2,7 +2,8 @@ extends WeaponState
 
 
 func enter(previous_state_path: String, data := {}) -> void:
-	w.firing = true
+	if w.current_weapon.full_auto:
+		w.firing = true
 	w.try_fire_weapon()
 
 func update(_delta: float) -> void:

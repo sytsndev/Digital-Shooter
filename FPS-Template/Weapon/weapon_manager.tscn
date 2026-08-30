@@ -7,8 +7,9 @@
 [ext_resource type="Script" uid="uid://dmol5gtomuc7q" path="res://Weapon/States/reloading.gd" id="5_ao85i"]
 [ext_resource type="Script" uid="uid://c24gl7knassq3" path="res://Weapon/States/swapping.gd" id="6_6ld8y"]
 
-[node name="WeaponManager" type="Node3D" unique_id=688794189]
+[node name="WeaponManager" type="Node3D" unique_id=688794189 node_paths=PackedStringArray("crosshair_ray")]
 script = ExtResource("1_7cv17")
+crosshair_ray = NodePath("CrosshairRay")
 
 [node name="Slot1" type="Node3D" parent="." unique_id=1430127530]
 

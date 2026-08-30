@@ -31,7 +31,8 @@ func _on_auto_heal_timeout():
 func _on_death():
 	queue_free()
 
-
+func take_damage(damage: float):
+	health._take_damage(damage)
 
 func on_ground_pound():
 	health._take_damage(100.0)

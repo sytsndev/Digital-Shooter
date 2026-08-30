@@ -14,6 +14,7 @@ const SLOT_2 := "slot_2"
 
 # --- UI and state
 @export var control: Control
+@export var crosshair_ray: RayCast3D
 var current_slot_key: String = SLOT_1
 var swap_slot: String = ""
 var current_weapon: WeaponResource = null
@@ -73,9 +74,18 @@ func try_fire_weapon():
 			animation_player.play("shoot")
 		if !current_weapon.infite_ammo:
 			current_weapon.current_ammo -= 1
+		if crosshair_ray.is_colliding():
+			try_damage()
 		fire_cooldown = current_weapon.fire_rate
 		if current_weapon.full_auto and not firing:
 			firing = true
+
+
+func try_damage():
+	var collider = crosshair_ray.get_collider()
+	if collider.has_method("take_damage"):
+		collider.take_damage(50)
+
 
 func reload_weapon():
 	if not current_weapon:
