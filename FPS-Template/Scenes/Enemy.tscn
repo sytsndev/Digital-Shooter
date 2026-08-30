@@ -16,3 +16,5 @@ shape = SubResource("CapsuleShape3D_7fd37")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1268009540]
 mesh = SubResource("CapsuleMesh_s1fef")
+
+[node name="AutoHealTimer" type="Timer" parent="." unique_id=2100682092]

@@ -25,6 +25,7 @@ var weapon_slot: String
 @export var current_ammo: int
 
 @export_category("Weapon Stats")
+@export var damage: float
 @export var full_auto: bool
 @export var fire_rate: float
 @export var weapon_type: WeaponType

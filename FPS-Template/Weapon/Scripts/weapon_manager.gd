@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		fire_cooldown -= delta
 		if fire_cooldown <= 0.0:
 			fire_cooldown = 0.0
-
+	#print("timer", reload_timer > 0.0)
 	if reloading:
 		if reload_timer > 0.0:
 			reload_timer -= delta
@@ -60,12 +60,13 @@ func equip_weapon(slot_key: String):
 	current_weapon.weapon_slot = slot_key
 	if current_weapon.weapon_type != WeaponEnums.WeaponType.EMPTY:
 		spawn_weapon_model(current_weapon.weapon_model_in_hands)
-		
+
 
 func swap_weapon(slot_key: String):
 	if slot_key == current_slot_key:
 		return
 	equip_weapon(slot_key)
+
 
 func try_fire_weapon():
 	if current_weapon.current_ammo > 0:

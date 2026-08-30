@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource("1_s3jy0")
-infite_ammo = true
 weapon_id = 1
 weapon_name = "weapon_1"
 max_ammo = 12
 reserve_ammo = 36
 current_ammo = 12
+damage = 24.0
 fire_rate = 0.05
 weapon_type = 4
 reload_delay = 0.5

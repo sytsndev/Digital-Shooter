@@ -9,6 +9,7 @@ weapon_name = "weapon_2"
 max_ammo = 30
 reserve_ammo = 90
 current_ammo = 30
+damage = 30.0
 full_auto = true
 fire_rate = 0.165
 weapon_type = 3

@@ -5,13 +5,13 @@ func enter(previous_state_path: String, data := {}) -> void:
 	w.reload_weapon()
 
 func update(_delta: float) -> void:
-	
 	if w.reload_timer == 0.0:
 		if w.shooting_state():
 			finished.emit(SHOOTING)
 		if w.swapping_state():
 			finished.emit(SWAPPING)
-		finished.emit(IDLE)
+		if w.reloading:
+			finished.emit(IDLE)
 
 func exit() -> void:
 	w.reloading = false
