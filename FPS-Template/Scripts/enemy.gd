@@ -4,14 +4,19 @@ extends Node
 var health: Health
 @export var health_res: HealthRes
 @onready var auto_heal_timer: Timer = $AutoHealTimer
+@onready var health_label: Label3D = $Health
 
 
 func _ready() -> void:
 	health_setup()
 
 
+func _process(delta: float) -> void:
+	health_label.text = str(health.curr_health)
+
+
 func health_setup():
-	health = Health.new(health_res.max_health, health_res.min_health, health_res.heal_rate, health_res.heal_rate)
+	health = Health.new(health_res.max_health, health_res.min_health, health_res.heal_rate, health_res.heal_rate, health_res.god_mode)
 	#player_ui.set_health(health.curr_health, health.max_health)
 	health.damage_taken.connect(_on_damage_taken)
 	health.dead.connect(_on_death)

@@ -7,17 +7,15 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-	if player.player_res.movement_type == MovementType.FLOATY:
-		player.movement.ground_pound()
-	for i in player.get_slide_collision_count():
-		var collision = player.get_slide_collision(i)
-		if collision == null:
-			continue
-		var collider = collision.get_collider()
-		print(collider) 
-		if collider.has_method("on_ground_pound"):
-			collider.on_ground_pound()
-			finished.emit(JUMPING)
+	player.movement.ground_pound()
+	player.gp_cast.force_shapecast_update()
+	if player.gp_cast.is_colliding():
+		for i in player.gp_cast.get_collision_count():
+			var collider = player.gp_cast.get_collider(i)
+			if collider and collider.has_method("on_ground_pound"):
+				collider.on_ground_pound()
+				finished.emit(JUMPING)
+				break
 		
 	if player.state_wall_run():
 		finished.emit(WALL_RUN)

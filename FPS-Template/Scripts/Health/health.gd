@@ -13,18 +13,22 @@ var full_heal_time: float
 var is_healing: bool = false
 var heal_speed: float = 0.0
 
+var god_mode: bool = false
+
 signal damage_taken
 signal dead
 
 func _init(max_hp: float = 100.0
 	, min_hp: float = 0.0
 	, h_rate: float = 1.0
-	, full_h_time: float = 2.0) -> void:
+	, full_h_time: float = 2.0
+	, g_mode: bool = false) -> void:
 	max_health = max_hp
 	min_health = min_hp
 	heal_rate = h_rate
 	full_heal_time = full_h_time
 	curr_health = max_health
+	god_mode = g_mode
 
 
 
@@ -36,6 +40,8 @@ func _start_healing():
 
 
 func _take_damage(damage: float):
+	if god_mode:
+		return
 	if (curr_health - damage) <= min_health:
 		_die()
 	if (curr_health - damage) > min_health:

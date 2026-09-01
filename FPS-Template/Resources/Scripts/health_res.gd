@@ -1,5 +1,9 @@
 class_name HealthRes extends Resource
 
+@export_category("Toggles")
+@export var god_mode: bool
+
+@export_category("Stats")
 @export var max_health: float
 @export var min_health: float
 @export var heal_rate: float

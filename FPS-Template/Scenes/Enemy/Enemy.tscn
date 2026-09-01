@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://c5u1vo3qobfb4"]
 
-[ext_resource type="Script" uid="uid://dfhyhe0r71iqw" path="res://Scripts/enemy.gd" id="1_m1htj"]
-[ext_resource type="Resource" uid="uid://bu6yckb5ox4gf" path="res://Resources/Scenes/Health/enemy_health_res.tres" id="2_wovta"]
+[ext_resource type="Script" uid="uid://dfhyhe0r71iqw" path="res://Scripts/enemy.gd" id="1_3l8kd"]
+[ext_resource type="Resource" uid="uid://bu6yckb5ox4gf" path="res://Resources/Scenes/Health/enemy_health_res.tres" id="2_e0oyi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fd37"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1117200668]
-script = ExtResource("1_m1htj")
-health_res = ExtResource("2_wovta")
+script = ExtResource("1_3l8kd")
+health_res = ExtResource("2_e0oyi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=731959757]
 shape = SubResource("CapsuleShape3D_7fd37")
@@ -18,3 +18,9 @@ shape = SubResource("CapsuleShape3D_7fd37")
 mesh = SubResource("CapsuleMesh_s1fef")
 
 [node name="AutoHealTimer" type="Timer" parent="." unique_id=2100682092]
+
+[node name="Health" type="Label3D" parent="." unique_id=1586718353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2757125, 0)
+pixel_size = 0.01
+billboard = 1
+text = "Test"

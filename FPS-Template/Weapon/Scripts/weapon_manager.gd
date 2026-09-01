@@ -85,7 +85,7 @@ func try_fire_weapon():
 func try_damage():
 	var collider = crosshair_ray.get_collider()
 	if collider.has_method("take_damage"):
-		collider.take_damage(50)
+		collider.take_damage(current_weapon.damage)
 
 
 func reload_weapon():

@@ -29,13 +29,18 @@ points = PackedVector3Array(-0.5, -0.5, 0, -0.49765074, -0.5, -0.049040705, -0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtle1"]
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray", "auto_heal_timer")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n471f"]
+height = 0.5
+radius = 1.0
+
+[node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "gp_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray", "auto_heal_timer")]
 script = ExtResource("1_fhl08")
 health_res = ExtResource("2_n471f")
 player_res = ExtResource("2_vtle1")
 neck = NodePath("Neck")
 camera = NodePath("Neck/CameraSpring/CameraLean/CameraContainer")
 crouch_shape_cast = NodePath("CrouchShape")
+gp_cast = NodePath("GroundPoundCast")
 collision_shape = NodePath("CollisionShape3D2")
 player_mesh = NodePath("MeshInstance3D")
 movement = NodePath("Movement")
@@ -269,11 +274,17 @@ popup/item_0/id = 0
 popup/item_1/text = "Glide"
 popup/item_1/id = 1
 
-[node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager") instance=ExtResource("18_b1ygp")]
+[node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager", "player") instance=ExtResource("18_b1ygp")]
 offset_right = -0.00012207031
 weapon_manager = NodePath("../Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/WeaponManager")
+player = NodePath("..")
 
 [node name="AutoHealTimer" type="Timer" parent="." unique_id=1681767244]
+
+[node name="GroundPoundCast" type="ShapeCast3D" parent="." unique_id=363034098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("CylinderShape3D_n471f")
+target_position = Vector3(0, 0, 0)
 
 [connection signal="toggled" from="Config/Dash" to="Config" method="_on_dash_toggled"]
 [connection signal="toggled" from="Config/Crouch" to="Config" method="_on_crouch_toggled"]
