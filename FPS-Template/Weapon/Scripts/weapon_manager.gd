@@ -117,6 +117,7 @@ func drop_current_weapon():
 	weapon_slots[current_slot_key] = empty_slot
 	equip_weapon(current_slot_key)
 
+
 func pick_up_weapon(resource_path: String):
 	var new_weapon: WeaponResource = load(resource_path)
 	if not new_weapon:

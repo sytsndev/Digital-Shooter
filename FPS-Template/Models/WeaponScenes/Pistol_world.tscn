@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmm86hk86in5d"]
 
-[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/interact_info.gd" id="1_263h6"]
+[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/weapon_interact.gd" id="1_263h6"]
 [ext_resource type="PackedScene" uid="uid://yxlq3jjgmx3x" path="res://Models/WeaponModels/Pistol/stylized_pistol.glb" id="1_mvrx6"]
 [ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interact.tscn" id="3_263h6"]
 
@@ -14,7 +14,6 @@ height = 0.134384
 [node name="Pistol" type="RigidBody3D" unique_id=1247885672]
 script = ExtResource("1_263h6")
 item_path = "res://Resources/Weapons/weapon_1.tres"
-equipable = true
 
 [node name="Sketchfab_Scene" parent="." unique_id=1761796001 instance=ExtResource("1_mvrx6")]
 

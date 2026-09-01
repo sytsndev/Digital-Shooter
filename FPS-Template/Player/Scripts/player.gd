@@ -48,9 +48,8 @@ func _process(delta: float) -> void:
 		var collider = interact_ray.get_collider()
 		if collider is RigidBody3D:
 			var interact = collider.get_node("Interact")
-			print(interact)
 			if interact != null and Input.is_action_just_pressed("interact"):
-				interact.pick_up()
+				interact.interact()
 
 
 #region Setup

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dih5sqwpjp1wa"]
 
-[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/interact_info.gd" id="1_g5evn"]
+[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/weapon_interact.gd" id="1_g5evn"]
 [ext_resource type="PackedScene" uid="uid://bnqyv0l0gwae5" path="res://Models/WeaponModels/AK/AK.glb" id="1_mvrx6"]
-[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/interact.tscn" id="3_i2r7b"]
+[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interact.tscn" id="3_i2r7b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvrx6"]
 size = Vector3(0.0575542, 0.142121, 0.889698)

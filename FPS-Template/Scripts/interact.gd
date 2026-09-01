@@ -5,7 +5,7 @@ var parent
 
 func _ready() -> void:
 	parent = get_parent()
-	weapon_manager = get_node("/root/World/Player/Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/WeaponManager")
+
 
 func pick_up():
 	if parent.equipable:
