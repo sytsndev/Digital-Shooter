@@ -45,11 +45,13 @@ func _process(delta: float) -> void:
 	wall_run_timer(delta)
 	slide_timer(delta)
 	if interact_ray.is_colliding():
-		var collider = interact_ray.get_collider()
-		if collider is RigidBody3D:
-			var interact = collider.get_node("Interact")
-			if interact != null and Input.is_action_just_pressed("interact"):
-				interact.interact()
+		set_interact()
+
+func set_interact():
+	var collider = interact_ray.get_collider()
+	var interact = collider.get_node_or_null("Interact")
+	if interact != null and Input.is_action_just_pressed("interact"):
+		interact.interact()
 
 
 #region Setup

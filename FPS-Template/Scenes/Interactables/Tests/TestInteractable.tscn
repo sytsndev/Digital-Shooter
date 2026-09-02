@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bgrs0f40kpvsj"]
+
+[ext_resource type="Script" uid="uid://bcp8akpw48u42" path="res://Weapon/Scripts/Interact/TestInteractables/test_interactable.gd" id="1_l5m87"]
+[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interactables/Interact.tscn" id="2_32tpl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[node name="TestInteractable" type="Node3D" unique_id=1680315353]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=813232670]
+script = ExtResource("1_l5m87")
+
+[node name="Interact" parent="StaticBody3D" unique_id=190896933 instance=ExtResource("2_32tpl")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1440954236]
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1897994356]
+shape = SubResource("BoxShape3D_yf5fn")

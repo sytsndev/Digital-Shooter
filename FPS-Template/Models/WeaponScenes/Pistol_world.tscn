@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/weapon_interact.gd" id="1_263h6"]
 [ext_resource type="PackedScene" uid="uid://yxlq3jjgmx3x" path="res://Models/WeaponModels/Pistol/stylized_pistol.glb" id="1_mvrx6"]
-[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interact.tscn" id="3_263h6"]
+[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interactables/Interact.tscn" id="3_263h6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvrx6"]
 size = Vector3(0.0440674, 0.238403, 0.0730591)

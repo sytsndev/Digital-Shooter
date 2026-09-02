@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bhvh10h14wie8" path="res://icon.svg" id="1_x56lj"]
 [ext_resource type="PackedScene" uid="uid://bvs5pa253asic" path="res://Player/player.tscn" id="2_2hbmw"]
 [ext_resource type="PackedScene" uid="uid://c5u1vo3qobfb4" path="res://Scenes/Enemy/Enemy.tscn" id="3_abuvq"]
+[ext_resource type="PackedScene" uid="uid://bgrs0f40kpvsj" path="res://Scenes/Interactables/Tests/TestInteractable.tscn" id="4_rsc6e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hbmw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -180,3 +181,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.33951, 1.1335373, -0.9037
 
 [node name="Enemy32" parent="." unique_id=1968874437 instance=ExtResource("3_abuvq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.225063, 1.1335373, -0.9037123)
+
+[node name="TestInteractable" parent="." unique_id=1680315353 instance=ExtResource("4_rsc6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9884503, -4.8538227)
