@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dih5sqwpjp1wa"]
 
-[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/weapon_interact.gd" id="1_g5evn"]
+[ext_resource type="Script" uid="uid://dnw1sahcpt5sm" path="res://Scripts/Environment/Interactables/weapon_pickup.gd" id="1_g5evn"]
 [ext_resource type="PackedScene" uid="uid://bnqyv0l0gwae5" path="res://Models/WeaponModels/AK/AK.glb" id="1_mvrx6"]
-[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interactables/Interact.tscn" id="3_i2r7b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvrx6"]
 size = Vector3(0.0575542, 0.142121, 0.889698)
@@ -21,7 +20,6 @@ height = 0.248602
 [node name="AK" type="RigidBody3D" unique_id=1081331527]
 script = ExtResource("1_g5evn")
 item_path = "res://Resources/Weapons/weapon_2.tres"
-equipable = true
 
 [node name="Sketchfab_Scene" parent="." unique_id=668836593 instance=ExtResource("1_mvrx6")]
 
@@ -41,5 +39,3 @@ shape = SubResource("CapsuleShape3D_pqoku")
 transform = Transform3D(1, 0, 0, 0, 0.895463, 0.445135, 0, -0.445135, 0.895463, -0.00686833, 0.0966529, -0.299798)
 shape = SubResource("CapsuleShape3D_fii5j")
 debug_fill = false
-
-[node name="Interact" parent="." unique_id=128422130 instance=ExtResource("3_i2r7b")]

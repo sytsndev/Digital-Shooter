@@ -56,7 +56,6 @@ func set_interact():
 			return
 		if res.has_method("interact"):
 			cur_interactable = res
-			print(cur_interactable)
 	elif !interact_ray.is_colliding() and cur_interactable != null:
 		cur_interactable = null
 

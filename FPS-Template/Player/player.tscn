@@ -110,6 +110,8 @@ script = ExtResource("12_p5o4e")
 
 [node name="InteractRay" type="RayCast3D" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=1556448973]
 target_position = Vector3(0, 0, -4)
+collision_mask = 17
+collide_with_areas = true
 
 [node name="GrappleCast" type="RayCast3D" parent="Neck/CameraSpring/CameraLean/CameraContainer" unique_id=997315077]
 

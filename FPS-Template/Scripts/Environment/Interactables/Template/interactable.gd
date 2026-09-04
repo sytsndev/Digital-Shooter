@@ -7,6 +7,10 @@ enum InteractType {
 }
 
 @export var interact_type: InteractType
+@export var is_one_shot: bool = false
+
+var can_interact: bool = true
+
 
 func interact():
 	pass
