@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dmm86hk86in5d"]
 
-[ext_resource type="Script" uid="uid://k2aj6mq08bpq" path="res://Weapon/Scripts/weapon_interact.gd" id="1_263h6"]
 [ext_resource type="PackedScene" uid="uid://yxlq3jjgmx3x" path="res://Models/WeaponModels/Pistol/stylized_pistol.glb" id="1_mvrx6"]
-[ext_resource type="PackedScene" uid="uid://dw21hlno45bmu" path="res://Scenes/Interactables/Interact.tscn" id="3_263h6"]
+[ext_resource type="Script" uid="uid://dnw1sahcpt5sm" path="res://Scripts/Environment/Interactables/weapon_pickup.gd" id="1_wp85m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvrx6"]
 size = Vector3(0.0440674, 0.238403, 0.0730591)
@@ -12,7 +11,7 @@ radius = 0.0381484
 height = 0.134384
 
 [node name="Pistol" type="RigidBody3D" unique_id=1247885672]
-script = ExtResource("1_263h6")
+script = ExtResource("1_wp85m")
 item_path = "res://Resources/Weapons/weapon_1.tres"
 
 [node name="Sketchfab_Scene" parent="." unique_id=1761796001 instance=ExtResource("1_mvrx6")]
@@ -24,5 +23,3 @@ shape = SubResource("BoxShape3D_mvrx6")
 [node name="LowerCollision" type="CollisionShape3D" parent="." unique_id=1505957519]
 transform = Transform3D(1, 0, 0, 0, 0.977187, -0.212382, 0, 0.212382, 0.977187, 0.000523627, 0.0602895, -0.0076414)
 shape = SubResource("CapsuleShape3D_20q7h")
-
-[node name="Interact" parent="." unique_id=190896933 instance=ExtResource("3_263h6")]

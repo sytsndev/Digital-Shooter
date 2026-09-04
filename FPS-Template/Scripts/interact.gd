@@ -1,4 +1,4 @@
-class_name Interact extends Node3D
+extends Node3D
 
 var weapon_manager: WeaponManager
 var parent

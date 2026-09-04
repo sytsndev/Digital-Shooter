@@ -34,6 +34,9 @@ var wr_reset_timer: float = 0.0
 var slide_reset_timer: float = 0.0
 var curr_gp_dist: float = 0.0 # this is holding the value of the height of the players current ground pound
 
+var cur_area_interactable = null
+var cur_interactable = null
+
 var is_paused: bool = false
 var is_dead: bool = false
 
@@ -44,14 +47,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	wall_run_timer(delta)
 	slide_timer(delta)
-	if interact_ray.is_colliding():
-		set_interact()
+	set_interact()
 
 func set_interact():
-	var collider = interact_ray.get_collider()
-	var interact = collider.get_node_or_null("Interact")
-	if interact != null and Input.is_action_just_pressed("interact"):
-		interact.interact()
+	if interact_ray.is_colliding() and cur_interactable == null:
+		var res = interact_ray.get_collider()
+		if res == null:
+			return
+		if res.has_method("interact"):
+			cur_interactable = res
+			print(cur_interactable)
+	elif !interact_ray.is_colliding() and cur_interactable != null:
+		cur_interactable = null
 
 
 #region Setup
