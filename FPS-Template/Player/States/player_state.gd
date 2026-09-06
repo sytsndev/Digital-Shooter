@@ -27,12 +27,10 @@ func _ready() -> void:
 
 
 func update(delta: float) -> void:
-	if player.player_res.crouch:
-		crouch_inputs()
-	ui_inputs()
+	check_inputs()
+	
 	if player.is_on_floor() and (player.dash_count > 0 or player.d_jump_count > 0):
-		player.dash_count = 0
-		player.d_jump_count = 0
+		player.reset_air_movement()
 
 
 func handle_input(event: InputEvent) -> void:
@@ -50,7 +48,15 @@ func handle_input(event: InputEvent) -> void:
 	)
 
 
+func check_inputs():
+	crouch_inputs()
+	ui_inputs()
+	interact_input()
+
+
 func crouch_inputs():
+	if !player.player_res.crouch:
+		return
 	player.crouch_shape_cast.force_shapecast_update()
 
 	if player.movement.is_sliding:
@@ -76,3 +82,12 @@ func ui_inputs():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		player.is_paused = false
 		get_tree().paused = false
+
+
+func interact_input():
+	if Input.is_action_just_pressed("interact"):
+		if player.cur_interactable != null:
+			player.cur_interactable.interact()
+			player.cur_interactable = null
+		elif player.cur_area_interactable != null:
+			player.cur_area_interactable.interact()
