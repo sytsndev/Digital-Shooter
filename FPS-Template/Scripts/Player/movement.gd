@@ -2,6 +2,7 @@ class_name Movement
 extends Node
 
 @export var player: Player
+@export var characater: CharacterBody3D
 
 #DASHING
 var is_dashing := false
@@ -91,18 +92,18 @@ func run(direction: Vector3, delta: float):
 
 
 func move(direction: Vector3, delta: float, speed: float):
-	var prev_velocity := player.velocity
+	var prev_velocity := characater.velocity
 	if direction:
-		player.velocity.x = direction.x * speed
-		player.velocity.z = direction.z * speed
+		characater.velocity.x = direction.x * speed
+		characater.velocity.z = direction.z * speed
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, speed)
-		player.velocity.z = move_toward(player.velocity.z, 0, speed)
-	player.move_and_slide()
-	var acceleration := (player.velocity - prev_velocity) / delta
+		characater.velocity.x = move_toward(characater.velocity.x, 0, speed)
+		characater.velocity.z = move_toward(characater.velocity.z, 0, speed)
+	characater.move_and_slide()
+	var acceleration := (characater.velocity - prev_velocity) / delta
 	
-	if player.player_res.c_lean:
-		player.camera_lean.update_lean(delta, acceleration, Vector3.UP)
+	if characater.player_res.c_lean:
+		characater.camera_lean.update_lean(delta, acceleration, Vector3.UP)
 
 
 func start_dash(direction: Vector3) -> void:

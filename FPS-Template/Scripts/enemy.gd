@@ -7,6 +7,7 @@ var health: Health
 @onready var health_label: Label3D = $Health
 @export var movement: Movement
 
+
 func _ready() -> void:
 	health_setup()
 
