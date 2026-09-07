@@ -12,7 +12,7 @@ height = 0.134384
 
 [node name="Pistol" type="RigidBody3D" unique_id=1247885672]
 script = ExtResource("1_wp85m")
-item_path = "res://Resources/Weapons/weapon_1.tres"
+item_path = "res://Resources/Scenes/Weapons/weapon_1.tres"
 
 [node name="Sketchfab_Scene" parent="." unique_id=1761796001 instance=ExtResource("1_mvrx6")]
 

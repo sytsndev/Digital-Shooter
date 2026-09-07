@@ -108,7 +108,7 @@ func move(direction: Vector3, delta: float, speed: float):
 func start_dash(direction: Vector3) -> void:
 	dash_dir = direction
 	if direction == Vector3.ZERO:
-		return
+		direction = player.neck.global_transform.basis * Vector3.FORWARD
 	
 	is_dashing = true
 	dash_dir = direction.normalized()

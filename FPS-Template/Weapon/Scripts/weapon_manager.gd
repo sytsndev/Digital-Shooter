@@ -7,10 +7,10 @@ const SLOT_2 := "slot_2"
 
 # --- Weapon resources
 @onready var weapon_slots := {
-	SLOT_1: preload("res://Resources/Weapons/weapon_1.tres"),
-	SLOT_2: preload("res://Resources/Weapons/weapon_2.tres")
+	SLOT_1: preload("res://Resources/Scenes/Weapons/weapon_1.tres"),
+	SLOT_2: preload("res://Resources/Scenes/Weapons/weapon_2.tres")
 }
-@onready var empty_slot: WeaponResource = preload("res://Resources/Weapons/empty.tres")
+@onready var empty_slot: WeaponResource = preload("res://Resources/Scenes/Weapons/empty.tres")
 
 # --- UI and state
 @export var control: Control

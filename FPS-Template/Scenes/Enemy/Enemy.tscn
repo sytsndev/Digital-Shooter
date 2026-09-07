@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dfhyhe0r71iqw" path="res://Scripts/enemy.gd" id="1_3l8kd"]
 [ext_resource type="Resource" uid="uid://bu6yckb5ox4gf" path="res://Resources/Scenes/Health/enemy_health_res.tres" id="2_e0oyi"]
+[ext_resource type="Script" uid="uid://dswanda68gj6v" path="res://Scripts/Player/movement.gd" id="3_e0oyi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fd37"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1117200668]
+[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement")]
 script = ExtResource("1_3l8kd")
 health_res = ExtResource("2_e0oyi")
+movement = NodePath("Movement")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=731959757]
 shape = SubResource("CapsuleShape3D_7fd37")
@@ -24,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2757125, 0)
 pixel_size = 0.01
 billboard = 1
 text = "Test"
+
+[node name="Movement" type="Node3D" parent="." unique_id=366379169]
+script = ExtResource("3_e0oyi")
