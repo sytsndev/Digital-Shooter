@@ -6,6 +6,7 @@ var health: Health
 @onready var auto_heal_timer: Timer = $AutoHealTimer
 @onready var health_label: Label3D = $Health
 @export var movement: Movement
+@export var movement_res: MovementRes
 
 
 func _ready() -> void:
