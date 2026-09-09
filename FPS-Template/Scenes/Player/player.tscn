@@ -137,10 +137,10 @@ shape = SubResource("CapsuleShape3D_vtle1")
 target_position = Vector3(0, 0.5, 0)
 collide_with_areas = true
 
-[node name="Movement" type="Node3D" parent="." unique_id=1062839558 node_paths=PackedStringArray("player", "characater")]
+[node name="Movement" type="Node3D" parent="." unique_id=1062839558 node_paths=PackedStringArray("player", "character")]
 script = ExtResource("18_2aanf")
 player = NodePath("..")
-characater = NodePath("..")
+character = NodePath("..")
 
 [node name="Config" type="Control" parent="." unique_id=1754146859 node_paths=PackedStringArray("player", "crouch_toggle", "sprint_toggle", "d_jump_toggle", "wall_run_toggle", "slide_toggle", "dash_toggle", "movement_type", "slide_type")]
 visible = false

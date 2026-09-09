@@ -7,9 +7,14 @@ var health: Health
 @onready var health_label: Label3D = $Health
 @export var movement: Movement
 @export var movement_res: MovementRes
+@export var nav_agent: NavigationAgent3D
+
+var player: Player
 
 
 func _ready() -> void:
+	player = get_tree().root.find_child("Player", true, false)
+	print(player)
 	health_setup()
 
 

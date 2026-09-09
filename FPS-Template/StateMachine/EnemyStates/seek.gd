@@ -5,11 +5,12 @@ func enter(previous_state_path: String, data := {}) -> void:
 	#player.animation_player.play("idle")
 
 func physics_update(_delta: float) -> void:
-	pass
 	#if player.player_res.movement_type == MovementType.MOMENTUM:
-	enemy.movement.stop_character_move(_delta)
-	if enemy.player:
-		finished.emit(SEEK)
+	enemy.nav_agent.target_position = enemy.player.global_position
+	var next_path_pos = enemy.nav_agent.get_next_path_position()
+	var direction = enemy.position.direction_to(next_path_pos)
+	enemy.movement.move(direction, _delta, enemy.movement_res.speed)
+	
 	#else:
 		#player.movement.stop_move(_delta)
 #

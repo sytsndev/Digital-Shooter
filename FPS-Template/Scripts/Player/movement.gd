@@ -116,8 +116,8 @@ func move(direction: Vector3, delta: float, speed: float):
 	character.move_and_slide()
 	var acceleration := (character.velocity - prev_velocity) / delta
 	
-	if character.player_res.c_lean:
-		character.camera_lean.update_lean(delta, acceleration, Vector3.UP)
+	#if character.player_res.c_lean:
+		#character.camera_lean.update_lean(delta, acceleration, Vector3.UP)
 
 
 func start_dash(direction: Vector3) -> void:
@@ -423,7 +423,6 @@ func ground_pound():
 
 func calculate_rebound_impulse(fall_distance: float) -> float:
 	var target_height: float = fall_distance * player.player_res.gp_bounce_perc
-	print("Impulse", target_height)
 	var impulse: float = sqrt(2.0 * abs(player.player_res.jump_gravity) * target_height)
 	
 	return clamp(impulse, player.player_res.gp_min_bounce_impulse, player.player_res.gp_max_bounce_impulse)

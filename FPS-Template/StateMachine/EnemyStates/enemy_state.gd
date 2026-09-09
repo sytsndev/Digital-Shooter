@@ -2,7 +2,7 @@ class_name EnemyState
 extends State
 
 const IDLE = "Idle"
-const RUNNING = "Running"
+const SEEK = "Seek"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
 const SPRINT = "Sprint"
