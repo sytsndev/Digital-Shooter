@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="MovementRes" format=3 uid="uid://dmfqoedpa115o"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://bv0gwlpa4e5ub"]
 
-[ext_resource type="Script" uid="uid://m5navxhikfbi" path="res://Resources/Scripts/movement_res.gd" id="1_lyrjw"]
+[ext_resource type="Script" uid="uid://bisy77exw5lro" path="res://Resources/Scripts/enemy_res.gd" id="1_lyrjw"]
 
 [resource]
 script = ExtResource("1_lyrjw")
-speed = 8.0
-metadata/_custom_type_script = "uid://m5navxhikfbi"
+view_distance = 30.0
+fov = 90.0
+height = 2.0
+metadata/_custom_type_script = "uid://bisy77exw5lro"

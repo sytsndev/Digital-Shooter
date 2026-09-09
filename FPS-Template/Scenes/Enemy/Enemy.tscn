@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dfhyhe0r71iqw" path="res://Scripts/enemy.gd" id="1_3l8kd"]
 [ext_resource type="Resource" uid="uid://bu6yckb5ox4gf" path="res://Resources/Scenes/Health/enemy_health_res.tres" id="2_e0oyi"]
 [ext_resource type="Script" uid="uid://dswanda68gj6v" path="res://Scripts/Player/movement.gd" id="3_e0oyi"]
-[ext_resource type="Resource" uid="uid://dmfqoedpa115o" path="res://Resources/Scenes/Enemy/EnemyRes.tres" id="3_seemo"]
+[ext_resource type="Resource" uid="uid://dmfqoedpa115o" path="res://Resources/Scenes/Enemy/EnemyMovementRes.tres" id="3_seemo"]
 [ext_resource type="Script" uid="uid://qxxp28vujgu" path="res://StateMachine/state_machine.gd" id="4_fw0yv"]
+[ext_resource type="Resource" uid="uid://bv0gwlpa4e5ub" path="res://Resources/Scenes/Enemy/EnemyRes.tres" id="4_shrp6"]
 [ext_resource type="Script" uid="uid://l8exlph8vbc0" path="res://StateMachine/EnemyStates/idle.gd" id="5_fw0yv"]
 [ext_resource type="Script" uid="uid://d4p1acwqwgof" path="res://StateMachine/EnemyStates/seek.gd" id="7_ljmj3"]
 
@@ -12,12 +13,14 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent")]
+[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll")]
 script = ExtResource("1_3l8kd")
 health_res = ExtResource("2_e0oyi")
-movement = NodePath("Movement")
 movement_res = ExtResource("3_seemo")
+enemy_res = ExtResource("4_shrp6")
+movement = NodePath("Movement")
 nav_agent = NodePath("NavigationAgent3D")
+fov_coll = NodePath("Area3D/CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=731959757]
 shape = SubResource("CapsuleShape3D_7fd37")
@@ -47,3 +50,7 @@ script = ExtResource("5_fw0yv")
 script = ExtResource("7_ljmj3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=10123425]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2031043472]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=778257522]
