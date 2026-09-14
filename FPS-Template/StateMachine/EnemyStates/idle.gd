@@ -8,7 +8,7 @@ func physics_update(_delta: float) -> void:
 	pass
 	#if player.player_res.movement_type == MovementType.MOMENTUM:
 	enemy.movement.stop_character_move(_delta)
-	if enemy.player:
+	if enemy.player_in_view:
 		finished.emit(SEEK)
 	#else:
 		#player.movement.stop_move(_delta)

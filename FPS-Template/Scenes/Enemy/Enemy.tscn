@@ -13,7 +13,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vw1vb"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll", "occlusion_ray")]
 script = ExtResource("1_3l8kd")
 health_res = ExtResource("2_e0oyi")
 movement_res = ExtResource("3_seemo")
@@ -21,6 +23,7 @@ enemy_res = ExtResource("4_shrp6")
 movement = NodePath("Movement")
 nav_agent = NodePath("NavigationAgent3D")
 fov_coll = NodePath("Area3D/CollisionShape3D")
+occlusion_ray = NodePath("OcclusionRay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=731959757]
 shape = SubResource("CapsuleShape3D_7fd37")
@@ -54,3 +57,9 @@ script = ExtResource("7_ljmj3")
 [node name="Area3D" type="Area3D" parent="." unique_id=2031043472]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=778257522]
+shape = SubResource("BoxShape3D_vw1vb")
+
+[node name="OcclusionRay" type="RayCast3D" parent="." unique_id=798744845]
+target_position = Vector3(0, 0, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_player_in_fov"]
