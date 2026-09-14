@@ -95,63 +95,66 @@ func _create_fov_debug_mesh(points: PackedVector3Array) -> void:
 	# 5: ( w,  far_h, d)
 	
 	var triangles = PackedVector3Array()
-	
-	# Near edge to far bottom edge: two triangles forming a quad (0,1,3,2)
-	# Triangle 1: 0, 1, 3
+
+	# Bottom face: near bottom point -> far bottom edge
 	triangles.append(points[0])
-	triangles.append(points[1])
-	triangles.append(points[3])
-	# Triangle 2: 0, 3, 2
-	triangles.append(points[0])
-	triangles.append(points[3])
 	triangles.append(points[2])
-	
-	# Near edge to far top edge: quad (0,1,5,4)
-	# Triangle 3: 0, 1, 5
-	triangles.append(points[0])
+	triangles.append(points[3])
+
+	# Top face: near top point -> far top edge
 	triangles.append(points[1])
 	triangles.append(points[5])
-	# Triangle 4: 0, 5, 4
-	triangles.append(points[0])
-	triangles.append(points[5])
 	triangles.append(points[4])
-	
-	# Far face: two triangles (2,3,5,4)
-	# Triangle 5: 2, 3, 5
+
+	# Left side: quad (0, 1, 4, 2)
+	triangles.append(points[0])
+	triangles.append(points[1])
+	triangles.append(points[4])
+
+	triangles.append(points[0])
+	triangles.append(points[4])
 	triangles.append(points[2])
+
+	# Right side: quad (0, 3, 5, 1)
+	triangles.append(points[0])
 	triangles.append(points[3])
 	triangles.append(points[5])
-	# Triangle 6: 2, 5, 4
+
+	triangles.append(points[0])
+	triangles.append(points[5])
+	triangles.append(points[1])
+
+	# Far face: quad (2, 4, 5, 3)
+	triangles.append(points[2])
+	triangles.append(points[4])
+	triangles.append(points[5])
+
 	triangles.append(points[2])
 	triangles.append(points[5])
-	triangles.append(points[4])
+	triangles.append(points[3])
 	
-	# Back cap (optional): close the shape at the near edge as a thin quad
-	# Using the near segment as a degenerate “edge”; if you want a closed volume,
-	# you can add a small rectangle in front of the enemy instead of just a line.
-	# For visualization, the above faces are usually enough.
-	
-	var arrays = []
-	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = triangles
-	
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	
-	var mesh_inst = MeshInstance3D.new()
-	mesh_inst.name = "FOVDebugMesh"
-	mesh_inst.mesh = mesh
-	
-	# Simple unshaded material so it's always visible
-	var mat = StandardMaterial3D.new()
-	mat.albedo_color = Color(1, 0, 0, 0.4)  # red, semi-transparent
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	
-	mesh_inst.set_surface_override_material(0, mat)
-	
-	fov_coll.add_child(mesh_inst)
-	mesh_inst.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else null
+	if Debug.debug_visuals_enable:
+		var arrays = []
+		arrays.resize(Mesh.ARRAY_MAX)
+		arrays[Mesh.ARRAY_VERTEX] = triangles
+		
+		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+		
+		var mesh_inst = MeshInstance3D.new()
+		mesh_inst.name = "FOVDebugMesh"
+		mesh_inst.mesh = mesh
+		
+		# Simple unshaded material so it's always visible
+		var mat = StandardMaterial3D.new()
+		mat.albedo_color = Color(1, 0, 0, 0.4)  # red, semi-transparent
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+		
+		mesh_inst.set_surface_override_material(0, mat)
+		
+		fov_coll.add_child(mesh_inst)
+		mesh_inst.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else null
 
 
 #endregion
@@ -202,3 +205,7 @@ func _on_player_in_fov(body: Node3D) -> void:
 	print("Player visible and in LOS")
 	player_in_view = true
 	
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	player_in_view = false

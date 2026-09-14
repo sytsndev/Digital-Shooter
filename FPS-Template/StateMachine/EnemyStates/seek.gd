@@ -25,5 +25,5 @@ func physics_update(_delta: float) -> void:
 		
 		enemy.movement.move(direction, _delta, enemy.movement_res.speed)
 	
-	else:
+	if enemy.player_in_view:
 		finished.emit(IDLE)
