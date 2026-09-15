@@ -15,6 +15,8 @@ var health: Health
 
 var player: Player
 var player_in_view: bool = false
+var player_blocked: bool = false
+var player_visible: bool = false
 
 
 func _ready() -> void:
@@ -34,6 +36,9 @@ func health_setup():
 	#player_ui.set_health(health.curr_health, health.max_health)
 	health.damage_taken.connect(_on_damage_taken)
 	health.dead.connect(_on_death)
+
+
+# Just simplify it and have a huge sphere radius that you check a ray cast if the player is in. I will update this later
 
 
 func fov_setup():
@@ -182,30 +187,26 @@ func on_ground_pound():
 
 
 func _on_player_in_fov(body: Node3D) -> void:
-	# Start at enemy position (or some offset like eye height)
-	occlusion_ray.global_position = self.global_position  # or enemy.global_position if this script is not on enemy root
-	occlusion_ray.target_position = body.global_position - self.global_position  # vector from enemy to player
-	
-	# Optional: ignore the enemy's own collision layer
-	occlusion_ray.collision_mask = 1  # set this to whatever layer(s) the player is on
-	
-	add_child(occlusion_ray)
-	
-	# Force immediate update
-	occlusion_ray.force_raycast_update()
-	
-	if occlusion_ray.is_colliding():
-		var collider = occlusion_ray.get_collider()
-		if collider != body:
-			# Something is between enemy and player -> no line of sight
-			print("LOS blocked by: ", collider.name)
-			return
-	
-	# If we get here, we have line of sight to the player
-	print("Player visible and in LOS")
 	player_in_view = true
-	
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	player_in_view = false
+	player_visible = false
+	player_blocked = false
+	occlusion_ray.target_position = Vector3.ZERO
+
+
+func check_player_occlussion():
+	occlusion_ray.target_position = player.global_position - self.global_position  # vector from enemy to player
+	
+	occlusion_ray.force_raycast_update()
+	
+	if occlusion_ray.is_colliding():
+		var collider = occlusion_ray.get_collider()
+		if collider != player:
+			player_blocked = true
+		else:
+			player_in_view = true
+			player_visible = true
+			player_blocked = false

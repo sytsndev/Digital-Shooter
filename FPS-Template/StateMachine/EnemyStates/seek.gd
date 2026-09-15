@@ -25,5 +25,5 @@ func physics_update(_delta: float) -> void:
 		
 		enemy.movement.move(direction, _delta, enemy.movement_res.speed)
 	
-	if enemy.player_in_view:
+	if !enemy.player_visible or enemy.player_blocked:
 		finished.emit(IDLE)
