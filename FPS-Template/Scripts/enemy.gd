@@ -41,118 +41,8 @@ func fov_setup():
 	
 	# Ensure these are floats
 	var view_distance: float = float(enemy_res.view_distance)
-	var fov_deg: float = float(enemy_res.fov)
-	var height: float = float(enemy_res.height)
 	
-	var fov_rad: float = deg_to_rad(fov_deg)
-	var half_fov: float = fov_rad * 0.5
-	
-	# Far plane half-width from FOV and distance
-	var far_half_width: float = view_distance * tan(half_fov)
-	
-	# Enforce 16:9 aspect on the far plane
-	var aspect: float = 16.0 / 9.0
-	var far_full_height: float = (far_half_width * 2.0) / aspect
-	var far_half_height: float = far_full_height * 0.5
-	
-	# Near plane uses enemy_res.height
-	var near_half_height: float = height * 0.5
-	
-	var points = PackedVector3Array()
-	
-	# Near edge (at enemy): vertical segment
-	points.append(Vector3(0.0, -near_half_height, 0.0))
-	points.append(Vector3(0.0,  near_half_height, 0.0))
-	
-	# Far rectangle at view_distance with 16:9 aspect
-	points.append(Vector3(-far_half_width, -far_half_height, view_distance))
-	points.append(Vector3( far_half_width, -far_half_height, view_distance))
-	points.append(Vector3(-far_half_width,  far_half_height, view_distance))
-	points.append(Vector3( far_half_width,  far_half_height, view_distance))
-	
-	shape.points = points
-	fov_coll.shape = shape
-	
-	# --- Create debug mesh ---
-	_create_fov_debug_mesh(points)
-
-
-func _create_fov_debug_mesh(points: PackedVector3Array) -> void:
-	# Remove any existing debug mesh child
-	for child in fov_coll.get_children():
-		if child is MeshInstance3D and child.name == "FOVDebugMesh":
-			child.queue_free()
-	
-	var mesh = ArrayMesh.new()
-	
-	# We'll build triangles manually from the 6 points.
-	# Points layout:
-	# 0: (0, -near_h, 0)
-	# 1: (0,  near_h, 0)
-	# 2: (-w, -far_h, d)
-	# 3: ( w, -far_h, d)
-	# 4: (-w,  far_h, d)
-	# 5: ( w,  far_h, d)
-	
-	var triangles = PackedVector3Array()
-	
-	# Near edge to far bottom edge: two triangles forming a quad (0,1,3,2)
-	# Triangle 1: 0, 1, 3
-	triangles.append(points[0])
-	triangles.append(points[1])
-	triangles.append(points[3])
-	# Triangle 2: 0, 3, 2
-	triangles.append(points[0])
-	triangles.append(points[3])
-	triangles.append(points[2])
-	
-	# Near edge to far top edge: quad (0,1,5,4)
-	# Triangle 3: 0, 1, 5
-	triangles.append(points[0])
-	triangles.append(points[1])
-	triangles.append(points[5])
-	# Triangle 4: 0, 5, 4
-	triangles.append(points[0])
-	triangles.append(points[5])
-	triangles.append(points[4])
-	
-	# Far face: two triangles (2,3,5,4)
-	# Triangle 5: 2, 3, 5
-	triangles.append(points[2])
-	triangles.append(points[3])
-	triangles.append(points[5])
-	# Triangle 6: 2, 5, 4
-	triangles.append(points[2])
-	triangles.append(points[5])
-	triangles.append(points[4])
-	
-	# Back cap (optional): close the shape at the near edge as a thin quad
-	# Using the near segment as a degenerate “edge”; if you want a closed volume,
-	# you can add a small rectangle in front of the enemy instead of just a line.
-	# For visualization, the above faces are usually enough.
-	
-	var arrays = []
-	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = triangles
-	
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	
-	var mesh_inst = MeshInstance3D.new()
-	mesh_inst.name = "FOVDebugMesh"
-	mesh_inst.mesh = mesh
-	
-	# Simple unshaded material so it's always visible
-	var mat = StandardMaterial3D.new()
-	mat.albedo_color = Color(1, 0, 0, 0.4)  # red, semi-transparent
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	
-	mesh_inst.set_surface_override_material(0, mat)
-	
-	fov_coll.add_child(mesh_inst)
-	mesh_inst.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else null
-
+	fov_coll.shape.radius = view_distance
 
 #endregion
 
@@ -192,6 +82,7 @@ func _on_player_in_fov(body: Node3D) -> void:
 	occlusion_ray.force_raycast_update()
 	
 	if occlusion_ray.is_colliding():
+		print("Test")
 		var collider = occlusion_ray.get_collider()
 		if collider != body:
 			# Something is between enemy and player -> no line of sight
