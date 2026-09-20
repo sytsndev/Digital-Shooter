@@ -25,3 +25,8 @@ func _ready() -> void:
 	enemy = owner as Enemy
 	assert(enemy != null, "The EnemyState state type must be used only in the player scene. It needs the owner to be a Enemy node.")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func update(_delta: float) -> void:
+	if enemy.player_in_view:
+		enemy.check_player_occlussion()

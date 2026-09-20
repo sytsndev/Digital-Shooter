@@ -1,25 +1,25 @@
-[gd_scene format=3 uid="uid://bvs5pa253asic"]
+[gd_scene format=3 uid="uid://dya7ph1hs6cai"]
 
-[ext_resource type="Script" uid="uid://cy554gsh5247q" path="res://Scripts/Player/player.gd" id="1_rcvs5"]
-[ext_resource type="Resource" uid="uid://c2f5lmswd86tb" path="res://Resources/Scenes/Health/player_health_res.tres" id="2_h8ma5"]
-[ext_resource type="Resource" uid="uid://4g0po8ces2vo" path="res://Resources/Scenes/Player/PlayerRes.tres" id="3_eksi1"]
-[ext_resource type="Script" uid="uid://qxxp28vujgu" path="res://StateMachine/state_machine.gd" id="4_jincj"]
-[ext_resource type="Script" uid="uid://cxa1udd8bx2cy" path="res://StateMachine/PlayerStates/falling.gd" id="5_rcvs5"]
-[ext_resource type="Script" uid="uid://d8j3cnaa1equ" path="res://StateMachine/PlayerStates/idle.gd" id="6_h8ma5"]
-[ext_resource type="Script" uid="uid://cjnvsygxiw5ii" path="res://StateMachine/PlayerStates/jumping.gd" id="7_eksi1"]
-[ext_resource type="Script" uid="uid://bd1o3e1mpvsf" path="res://StateMachine/PlayerStates/running.gd" id="8_jincj"]
-[ext_resource type="Script" uid="uid://bgypvlgxfxdf3" path="res://StateMachine/PlayerStates/sprint.gd" id="9_rqdc0"]
-[ext_resource type="Script" uid="uid://bm2dfwnapb66m" path="res://StateMachine/PlayerStates/dash.gd" id="10_qr1w5"]
-[ext_resource type="Script" uid="uid://cv21yalmwopew" path="res://StateMachine/PlayerStates/sliding.gd" id="11_ythyg"]
-[ext_resource type="Script" uid="uid://dvddh4ejtaq1r" path="res://StateMachine/PlayerStates/wall_run.gd" id="12_bmb2s"]
-[ext_resource type="Script" uid="uid://bjnbohdcogb88" path="res://StateMachine/PlayerStates/ground_pound.gd" id="13_ur3l4"]
-[ext_resource type="Script" uid="uid://bji53amntl2no" path="res://Scripts/Player/Camera/camera_spring.gd" id="14_1agin"]
-[ext_resource type="Script" uid="uid://cijh8hdlcrmye" path="res://Scripts/Player/Camera/camera_lean.gd" id="15_2jnj1"]
-[ext_resource type="Script" uid="uid://cdbu1kklfiir6" path="res://Scripts/Player/Camera/camera_manager.gd" id="16_enij7"]
-[ext_resource type="PackedScene" uid="uid://d2kbyn1k775i8" path="res://Weapon/weapon_manager.tscn" id="17_mwii3"]
-[ext_resource type="Script" uid="uid://dswanda68gj6v" path="res://Scripts/Player/movement.gd" id="18_2aanf"]
-[ext_resource type="Script" uid="uid://cjcj4w6udcjlc" path="res://Scripts/UI/Config/config.gd" id="19_rcvs5"]
-[ext_resource type="PackedScene" uid="uid://i6sbf46q30ja" path="res://Scenes/UI/player_ui.tscn" id="20_ogmfp"]
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_fhl08"]
+[ext_resource type="Script" uid="uid://qxxp28vujgu" path="res://StateMachine/state_machine.gd" id="1_k53q1"]
+[ext_resource type="Script" path="res://Player/States/falling.gd" id="2_fhl08"]
+[ext_resource type="Resource" uid="uid://c2f5lmswd86tb" path="res://Resources/Scenes/Health/player_health_res.tres" id="2_n471f"]
+[ext_resource type="Resource" path="res://Player/Resources/Scenes/PlayerRes.tres" id="2_vtle1"]
+[ext_resource type="Script" path="res://Player/States/idle.gd" id="3_vtle1"]
+[ext_resource type="Script" path="res://Player/States/jumping.gd" id="4_od3ui"]
+[ext_resource type="Script" path="res://Player/States/running.gd" id="5_00tjw"]
+[ext_resource type="Script" path="res://Player/States/sprint.gd" id="8_od3ui"]
+[ext_resource type="Script" path="res://Player/Scripts/Camera/camera_spring.gd" id="9_00tjw"]
+[ext_resource type="Script" path="res://Player/States/dash.gd" id="9_5htga"]
+[ext_resource type="Script" path="res://Player/States/sliding.gd" id="10_gu6f8"]
+[ext_resource type="Script" path="res://Player/Scripts/Camera/camera_lean.gd" id="10_x3vf3"]
+[ext_resource type="Script" path="res://Player/Scripts/movement.gd" id="11_apopc"]
+[ext_resource type="Script" path="res://Player/States/wall_run.gd" id="11_dkpta"]
+[ext_resource type="Script" path="res://Player/States/ground_pound.gd" id="12_o28un"]
+[ext_resource type="Script" path="res://Player/Scripts/Camera/camera_manager.gd" id="12_p5o4e"]
+[ext_resource type="PackedScene" uid="uid://d2kbyn1k775i8" path="res://Weapon/weapon_manager.tscn" id="15_pisgm"]
+[ext_resource type="Script" path="res://Player/Scripts/Config/config.gd" id="16_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://i6sbf46q30ja" path="res://Scenes/UI/player_ui.tscn" id="18_b1ygp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
@@ -34,11 +34,9 @@ height = 0.5
 radius = 1.0
 
 [node name="Player" type="CharacterBody3D" unique_id=1866795079 node_paths=PackedStringArray("neck", "camera", "crouch_shape_cast", "gp_cast", "collision_shape", "player_mesh", "movement", "camera_lean", "camera_manager", "left_wall_run_rays", "right_wall_run_rays", "grapple_cast", "interact_ray", "auto_heal_timer")]
-collision_layer = 9
-collision_mask = 9
-script = ExtResource("1_rcvs5")
-health_res = ExtResource("2_h8ma5")
-player_res = ExtResource("3_eksi1")
+script = ExtResource("1_fhl08")
+health_res = ExtResource("2_n471f")
+player_res = ExtResource("2_vtle1")
 neck = NodePath("Neck")
 camera = NodePath("Neck/CameraSpring/CameraLean/CameraContainer")
 crouch_shape_cast = NodePath("CrouchShape")
@@ -57,7 +55,6 @@ auto_heal_timer = NodePath("AutoHealTimer")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1519460414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
-layers = 9
 mesh = SubResource("CapsuleMesh_s1fef")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=624400571]
@@ -65,51 +62,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_hvfyp")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1155428803 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_jincj")
+script = ExtResource("1_k53q1")
 initial_state = NodePath("Idle")
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=136277759]
-script = ExtResource("5_rcvs5")
+script = ExtResource("2_fhl08")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=427866026]
-script = ExtResource("6_h8ma5")
+script = ExtResource("3_vtle1")
 
 [node name="Jumping" type="Node" parent="StateMachine" unique_id=1029443340]
-script = ExtResource("7_eksi1")
+script = ExtResource("4_od3ui")
 
 [node name="Running" type="Node" parent="StateMachine" unique_id=2135166823]
-script = ExtResource("8_jincj")
+script = ExtResource("5_00tjw")
 
 [node name="Sprint" type="Node" parent="StateMachine" unique_id=1443609635]
-script = ExtResource("9_rqdc0")
+script = ExtResource("8_od3ui")
 
 [node name="Dash" type="Node" parent="StateMachine" unique_id=1681008558]
-script = ExtResource("10_qr1w5")
+script = ExtResource("9_5htga")
 
 [node name="Sliding" type="Node" parent="StateMachine" unique_id=628616132]
-script = ExtResource("11_ythyg")
+script = ExtResource("10_gu6f8")
 
 [node name="WallRun" type="Node" parent="StateMachine" unique_id=168475959]
-script = ExtResource("12_bmb2s")
+script = ExtResource("11_dkpta")
 
 [node name="GroundPound" type="Node" parent="StateMachine" unique_id=1383859472]
-script = ExtResource("13_ur3l4")
+script = ExtResource("12_o28un")
 
 [node name="Neck" type="Node3D" parent="." unique_id=825116909]
 
 [node name="CameraSpring" type="Node3D" parent="Neck" unique_id=257365407]
-script = ExtResource("14_1agin")
+script = ExtResource("9_00tjw")
 
 [node name="CameraLean" type="Node3D" parent="Neck/CameraSpring" unique_id=730655355]
-script = ExtResource("15_2jnj1")
+script = ExtResource("10_x3vf3")
 
 [node name="CameraContainer" type="Node3D" parent="Neck/CameraSpring/CameraLean" unique_id=373691270]
 
 [node name="Camera3D" type="Camera3D" parent="Neck/CameraSpring/CameraLean/CameraContainer" unique_id=48079509]
 fov = 90.0
-script = ExtResource("16_enij7")
+script = ExtResource("12_p5o4e")
 
-[node name="WeaponManager" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=688794189 instance=ExtResource("17_mwii3")]
+[node name="WeaponManager" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=688794189 instance=ExtResource("15_pisgm")]
 
 [node name="InteractRay" type="RayCast3D" parent="Neck/CameraSpring/CameraLean/CameraContainer/Camera3D" unique_id=1556448973]
 target_position = Vector3(0, 0, -4)
@@ -140,10 +137,9 @@ shape = SubResource("CapsuleShape3D_vtle1")
 target_position = Vector3(0, 0.5, 0)
 collide_with_areas = true
 
-[node name="Movement" type="Node3D" parent="." unique_id=1062839558 node_paths=PackedStringArray("player", "character")]
-script = ExtResource("18_2aanf")
+[node name="Movement" type="Node3D" parent="." unique_id=1062839558 node_paths=PackedStringArray("player")]
+script = ExtResource("11_apopc")
 player = NodePath("..")
-character = NodePath("..")
 
 [node name="Config" type="Control" parent="." unique_id=1754146859 node_paths=PackedStringArray("player", "crouch_toggle", "sprint_toggle", "d_jump_toggle", "wall_run_toggle", "slide_toggle", "dash_toggle", "movement_type", "slide_type")]
 visible = false
@@ -151,7 +147,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("19_rcvs5")
+script = ExtResource("16_lfmf2")
 player = NodePath("..")
 crouch_toggle = NodePath("Crouch")
 sprint_toggle = NodePath("Sprint")
@@ -280,7 +276,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Glide"
 popup/item_1/id = 1
 
-[node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager", "player") instance=ExtResource("20_ogmfp")]
+[node name="PlayerUI" parent="." unique_id=986018775 node_paths=PackedStringArray("weapon_manager", "player") instance=ExtResource("18_b1ygp")]
 offset_right = -0.00012207031
 weapon_manager = NodePath("../Neck/CameraSpring/CameraLean/CameraContainer/Camera3D/WeaponManager")
 player = NodePath("..")

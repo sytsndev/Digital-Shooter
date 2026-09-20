@@ -9,5 +9,25 @@ func physics_update(_delta: float) -> void:
 	enemy.nav_agent.target_position = enemy.player.global_position
 	var next_path_pos = enemy.nav_agent.get_next_path_position()
 	
+<<<<<<< HEAD
 	if !enemy.player_in_view:
+=======
+	if enemy.global_position.distance_to(next_path_pos) > 0.01:
+		var direction = (next_path_pos - enemy.global_position).normalized()
+		
+		# Force direction to be horizontal (ignore any Y slope)
+		direction.y = 0.0
+		direction = direction.normalized()
+		
+		# Build a look target strictly on the same Y as the enemy
+		var look_target = enemy.global_position - direction
+		
+		# Rotate FOV to face movement direction, no up/down tilt
+		enemy.fov_coll.global_position = enemy.global_position  # if needed
+		enemy.fov_coll.look_at(look_target, Vector3.UP)
+		
+		enemy.movement.move(direction, _delta, enemy.movement_res.speed)
+	
+	if !enemy.player_visible or enemy.player_blocked:
+>>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
 		finished.emit(IDLE)

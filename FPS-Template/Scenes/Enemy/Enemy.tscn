@@ -13,8 +13,12 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
+<<<<<<< HEAD
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 30.0
+=======
+[sub_resource type="SphereShape3D" id="SphereShape3D_shrp6"]
+>>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll", "occlusion_ray")]
 script = ExtResource("1_3l8kd")
@@ -56,11 +60,19 @@ script = ExtResource("7_ljmj3")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=10123425]
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2031043472]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=778257522]
+<<<<<<< HEAD
 shape = SubResource("SphereShape3D_g4v7s")
+=======
+shape = SubResource("SphereShape3D_shrp6")
+debug_color = Color(0, 0.34805918, 0.6821098, 1)
+>>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
 
 [node name="OcclusionRay" type="RayCast3D" parent="." unique_id=798744845]
 target_position = Vector3(0, 0, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_player_in_fov"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
