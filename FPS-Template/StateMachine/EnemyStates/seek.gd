@@ -28,10 +28,5 @@ func physics_update(_delta: float) -> void:
 		
 		enemy.movement.move(direction, _delta, enemy.movement_res.speed)
 	
-<<<<<<< HEAD
-	if !enemy.player_visible or enemy.player_blocked:
->>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
-=======
 	if enemy.player_in_view:
->>>>>>> parent of 3e4aa4b (Working collision check)
 		finished.emit(IDLE)
