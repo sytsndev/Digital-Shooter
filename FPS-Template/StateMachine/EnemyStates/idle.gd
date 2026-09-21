@@ -5,11 +5,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 	#player.animation_player.play("idle")
 
 func physics_update(_delta: float) -> void:
+	pass
 	#if player.player_res.movement_type == MovementType.MOMENTUM:
 	enemy.movement.stop_character_move(_delta)
 	if enemy.player_in_view:
-		enemy.check_player_occlussion()
-	if enemy.player_visible:
 		print(enemy.player_in_view)
 		finished.emit(SEEK)
 	#else:

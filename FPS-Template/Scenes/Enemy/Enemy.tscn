@@ -14,11 +14,15 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s1fef"]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 30.0
 =======
 [sub_resource type="SphereShape3D" id="SphereShape3D_shrp6"]
 >>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
+=======
+[sub_resource type="BoxShape3D" id="BoxShape3D_vw1vb"]
+>>>>>>> parent of 3e4aa4b (Working collision check)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll", "occlusion_ray")]
 script = ExtResource("1_3l8kd")
@@ -65,11 +69,15 @@ collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=778257522]
 <<<<<<< HEAD
+<<<<<<< HEAD
 shape = SubResource("SphereShape3D_g4v7s")
 =======
 shape = SubResource("SphereShape3D_shrp6")
 debug_color = Color(0, 0.34805918, 0.6821098, 1)
 >>>>>>> 3e4aa4b5587f6537b80ae2825728bb3aeb9df6cd
+=======
+shape = SubResource("BoxShape3D_vw1vb")
+>>>>>>> parent of 3e4aa4b (Working collision check)
 
 [node name="OcclusionRay" type="RayCast3D" parent="." unique_id=798744845]
 target_position = Vector3(0, 0, 0)
