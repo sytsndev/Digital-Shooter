@@ -16,14 +16,7 @@ func physics_update(_delta: float) -> void:
 		direction.y = 0.0
 		direction = direction.normalized()
 		
-		# Build a look target strictly on the same Y as the enemy
-		var look_target = enemy.global_position - direction
-		
-		# Rotate FOV to face movement direction, no up/down tilt
-		enemy.fov_coll.global_position = enemy.global_position  # if needed
-		enemy.fov_coll.look_at(look_target, Vector3.UP)
-		
 		enemy.movement.move(direction, _delta, enemy.movement_res.speed)
 	
-	if !enemy.player_visible or enemy.player_blocked:
+	if !enemy.player_visible:
 		finished.emit(IDLE)

@@ -63,6 +63,7 @@ shape = SubResource("SphereShape3D_shrp6")
 debug_color = Color(0, 0.34805918, 0.6821098, 1)
 
 [node name="OcclusionRay" type="RayCast3D" parent="." unique_id=798744845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9916309, 0)
 target_position = Vector3(0, 0, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_player_in_fov"]
