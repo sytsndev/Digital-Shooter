@@ -9,6 +9,7 @@ var health: Health
 @export var nav_agent: NavigationAgent3D
 @export var fov_coll: CollisionShape3D
 @export var occlusion_ray: RayCast3D
+@export var attack_coll: CollisionShape3D
 
 @onready var auto_heal_timer: Timer = $AutoHealTimer
 @onready var health_label: Label3D = $Health
@@ -22,6 +23,7 @@ func _ready() -> void:
 	player = get_tree().root.find_child("Player", true, false)
 	health_setup()
 	fov_setup()
+	attack_range_setup()
 
 
 func _process(delta: float) -> void:
@@ -45,6 +47,10 @@ func fov_setup():
 	var view_distance: float = float(enemy_res.view_distance)
 	
 	fov_coll.shape.radius = view_distance
+
+
+func attack_range_setup():
+	attack_coll.shape.radius = enemy_res.attack_range
 
 
 #endregion
@@ -82,7 +88,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func check_player_occlussion():
-	occlusion_ray.target_position = player.global_position - self.global_position  # vector from enemy to player
+	var player_pos = Vector3(player.global_position.x, player.global_position.y + 0.75, player.global_position.z)
+	occlusion_ray.target_position = player_pos - self.global_position  # vector from enemy to player
 	
 	occlusion_ray.force_raycast_update()
 	
@@ -92,3 +99,12 @@ func check_player_occlussion():
 			player_visible = false
 		else:
 			player_visible = true
+
+
+func attack():
+	player.health._take_damage(10)
+
+
+func _on_attack_area_body_entered(body: Node3D) -> void:
+	if body is Player:
+		attack()

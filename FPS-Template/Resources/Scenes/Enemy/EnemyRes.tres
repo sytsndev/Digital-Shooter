@@ -5,6 +5,5 @@
 [resource]
 script = ExtResource("1_lyrjw")
 view_distance = 100.0
-fov = 90.0
-height = 2.0
+attack_range = 5.0
 metadata/_custom_type_script = "uid://bisy77exw5lro"

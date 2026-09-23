@@ -15,15 +15,25 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_shrp6"]
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll", "occlusion_ray")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+transparency = 1
+albedo_color = Color(1, 0.07450981, 0, 0.54509807)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1117200668 node_paths=PackedStringArray("movement", "nav_agent", "fov_coll", "occlusion_ray", "attack_coll")]
 script = ExtResource("1_3l8kd")
 health_res = ExtResource("2_e0oyi")
 movement_res = ExtResource("3_seemo")
 enemy_res = ExtResource("4_shrp6")
 movement = NodePath("Movement")
 nav_agent = NodePath("NavigationAgent3D")
-fov_coll = NodePath("Area3D/CollisionShape3D")
+fov_coll = NodePath("ViewArea/CollisionShape3D")
 occlusion_ray = NodePath("OcclusionRay")
+attack_coll = NodePath("AttackArea/CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=731959757]
 shape = SubResource("CapsuleShape3D_7fd37")
@@ -54,11 +64,11 @@ script = ExtResource("7_ljmj3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=10123425]
 
-[node name="Area3D" type="Area3D" parent="." unique_id=2031043472]
+[node name="ViewArea" type="Area3D" parent="." unique_id=2031043472]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=778257522]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewArea" unique_id=778257522]
 shape = SubResource("SphereShape3D_shrp6")
 debug_color = Color(0, 0.34805918, 0.6821098, 1)
 
@@ -66,5 +76,14 @@ debug_color = Color(0, 0.34805918, 0.6821098, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9916309, 0)
 target_position = Vector3(0, 0, 0)
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_player_in_fov"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[node name="AttackArea" type="Area3D" parent="." unique_id=1226098923]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=1538772732]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="DebugAttackShape" type="MeshInstance3D" parent="AttackArea/CollisionShape3D" unique_id=107784097]
+mesh = SubResource("SphereMesh_g4v7s")
+
+[connection signal="body_entered" from="ViewArea" to="." method="_on_player_in_fov"]
+[connection signal="body_exited" from="ViewArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

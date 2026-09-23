@@ -3,5 +3,7 @@ extends Resource
 
 @export_category("Enemy Setup")
 @export var view_distance: float
-@export var fov: float
-@export var height: float
+
+
+@export_category("Stats")
+@export var attack_range: float
