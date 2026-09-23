@@ -102,7 +102,7 @@ func check_player_occlussion():
 
 
 func attack():
-	player.health._take_damage(10)
+	player.health._take_damage(enemy_res.attack_damage)
 
 
 func _on_attack_area_body_entered(body: Node3D) -> void:

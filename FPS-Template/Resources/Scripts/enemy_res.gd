@@ -7,3 +7,4 @@ extends Resource
 
 @export_category("Stats")
 @export var attack_range: float
+@export var attack_damage: float
